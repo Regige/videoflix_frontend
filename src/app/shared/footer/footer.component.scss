@@ -1,0 +1,16 @@
+@import './../../../styles.scss';
+
+footer {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    padding: 10px;
+    margin-bottom: 24px;
+
+    a {
+        color: white;
+        text-decoration: none;
+        @include font18(500);
+    }
+}

@@ -1,0 +1,76 @@
+@import './../../styles.scss';
+
+app-header {
+    position: absolute;
+    top: 0;
+}
+
+app-footer {
+    position: absolute;
+    bottom: 0;
+}
+
+
+.start-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    color: white;
+
+    .start-tx {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+
+        h1 {
+            @include font48(700);
+            margin: 0;
+        }
+
+        h3 {
+            @include font24(500);
+            margin: 0;
+        }
+        p {
+            @include font18(400);
+            margin: 0;
+        }
+    }
+
+    .start-act { 
+        display: flex;
+        gap: 16px;
+
+        input {
+            @include font18(400);
+            background-color: transparent;
+            border: 1px solid white;
+            border-radius: 40px;
+            color: white;
+            padding: 12px 24px;
+            width: 360px;
+
+            &::placeholder {
+                @include font18(400);
+                color: white;
+            }
+            &:focus {
+                outline: none;
+            }
+        }
+
+        button {
+            @include btn();
+            @include font18(700);
+            background-image: url('./../../assets/img/icon/chevron_right.svg');
+            background-repeat: no-repeat;
+            background-position: right 20px bottom 50%;
+            padding-right: 52px;
+        }
+    }
+
+    
+}
+// @include font18(700);
