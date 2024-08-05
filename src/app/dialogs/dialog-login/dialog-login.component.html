@@ -1,0 +1,38 @@
+<div class="dialog-container">
+  <h2>Log in</h2>
+
+  <form (ngSubmit)="login()">
+    <div class="input-con dis-flx-col">
+      <label for="email-input">
+        <input
+          type="email"
+          name="email"
+          id="email-input"
+          placeholder="Email Address"
+        />
+      </label>
+      <label for="password-input">
+        <input
+          type="password"
+          name="password"
+          id="password-input"
+          placeholder="Password"
+        />
+      </label>
+      <label for="remember-checkbox" class="remember-label"
+        ><input type="checkbox" name="remember" id="remember-checkbox" />
+        Remember me</label
+      >
+    </div>
+    <input type="button" value="Log in" />
+  </form>
+
+  <button mat-dialog-close (click)="openDialog('forgotPassword')">
+    Forgot password?
+  </button>
+
+  <div class="signup-con">
+    <span>New to Videoflix?</span>
+    <button mat-dialog-close (click)="openDialog('signUp')">Sign Up now</button>
+  </div>
+</div>

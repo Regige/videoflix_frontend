@@ -1,0 +1,102 @@
+@import './../../../styles.scss';
+
+
+.dialog-container {
+    @include dialogCon();
+
+    h2 {
+        @include font48(700);
+        color: #2E3EDF;
+        margin: 0;
+        margin-bottom: 16px;
+    }
+
+    form {
+
+        input[type="email"], input[type="password"] {
+            @include inputField();
+        }
+
+        // input[type="checkbox"] {
+            // go down
+        // }
+        
+        input[type="button"] {
+            @include btn();
+            @include font18(700);
+        }
+    
+        .input-con {
+            gap: 32px;
+
+            .remember-label {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                margin-top: -16px;
+            }
+        }
+    }
+
+    button {
+        @include font18(700);
+        background-color: transparent;
+        border: none;
+        color: #2E3EDF;
+        cursor: pointer;
+
+        &:hover {
+            color: #4a56de;
+        }
+    }
+
+    span {
+        @include font18(500);
+    }
+
+    .signup-con {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+    }
+}
+
+
+// Custom input checkbox
+input[type="checkbox"] {
+    // Entferne die Standarddarstellung der Checkbox
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    border: 1px solid #2E3EDF;
+    border-radius: 3px;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+
+    // Styling für den Zustand wenn die Checkbox angeklickt ist
+    &:checked {
+        background-color: #2E3EDF;
+        border-color: #2E3EDF;
+
+        // Häkchen-Styling
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0.5px;
+            left: 3px;
+            width: 3px; // Breite des Häkchens
+            height: 6px; // Höhe des Häkchens
+            border: solid white;
+            border-width: 0 1px 1px 0; // Neue Rahmenstärke
+            transform: rotate(45deg);
+        }
+    }
+
+    // Fokus-Effekt
+    &:focus {
+        outline: none;
+    }
+}

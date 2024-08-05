@@ -1,5 +1,6 @@
 <app-header></app-header>
 
+@if(!start.dialogOpen) {
 <div class="start-info">
   <div class="start-tx">
     <h1>Movies, TV shows and more</h1>
@@ -8,8 +9,11 @@
   </div>
   <div class="start-act">
     <input type="email" name="" id="" placeholder="Email Address" />
-    <button mat-button (click)="openDialog()">Sign Up</button>
+    <button (click)="openDialog()">Sign Up</button>
+    <!-- <button (click)="openDialogReset()">Reset password</button> -->
   </div>
 </div>
+
+}
 
 <app-footer></app-footer>

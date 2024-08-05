@@ -28,12 +28,15 @@ body {
     font-weight: $fontWeight;
 }
 
+
+
 @mixin btn() {
     background-color: #2E3EDF;
     border: 1px solid #2E3EDF;
     border-radius: 40px;
     color: white;
     cursor: pointer;
+    height: 49.44px;
     padding: 12px 24px;
 
     &:hover {
@@ -41,6 +44,44 @@ body {
         border: 1px solid #4a56de;
     }
 }
+
+@mixin dialogCon() {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 43px 56px;
+    gap: 16px;
+    width: 520px;
+
+    form {
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         gap: 32px;
+    }
+}
+
+
+@mixin inputField() {
+    @include font18(400);
+    border: 1px solid #2E3EDF;
+    border-radius: 12px;
+    color: #2E3EDF;
+    padding: 12px 24px;
+    width: 408px;
+
+    &::placeholder {
+        @include font18(400);
+        color: #2E3EDF;
+    }
+      
+    &:focus {
+        outline: none;
+    }
+}
+
+
+
 
 
 // @include font18(700);
@@ -60,9 +101,20 @@ app-start-page {
 }
 
 
+.dialog-bor-rad {
+    .mdc-dialog__surface {
+        border-radius: 48px !important;
+        // box-shadow: none !important;
+        // overflow: visible;
+        
+    }
+}
 
 
-
+.dis-flx-col {
+    display: flex;
+    flex-direction: column;
+}
 
 
 // font

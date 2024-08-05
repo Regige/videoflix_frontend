@@ -1,12 +1,12 @@
 import { Component, inject } from '@angular/core';
-import {MatButtonModule} from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogSignupComponent } from '../../dialogs/dialog-signup/dialog-signup.component';
+import { DialogLoginComponent } from '../../dialogs/dialog-login/dialog-login.component';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [MatButtonModule],
+  imports: [ MatDialogModule ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
@@ -14,7 +14,7 @@ export class HeaderComponent {
   readonly dialog = inject(MatDialog);
 
   openDialog() {
-    this.dialog.open(DialogSignupComponent);
+    this.dialog.open(DialogLoginComponent, { panelClass: ['dialog-bor-rad'] });
   }
 
 }
