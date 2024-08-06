@@ -17,7 +17,7 @@
             @include inputField();
         }
 
-        input[type="button"] {
+        input[type="submit"] {
             @include btn();
             @include font18(700);
         }

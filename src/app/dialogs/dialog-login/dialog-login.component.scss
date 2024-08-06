@@ -50,14 +50,15 @@
         }
     }
 
-    span {
-        @include font18(500);
-    }
-
+    
     .signup-con {
         display: flex;
         align-items: center;
         gap: 24px;
+        
+        span {
+            @include font18(500);
+        }
     }
 }
 

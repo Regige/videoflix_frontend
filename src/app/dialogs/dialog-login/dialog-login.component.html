@@ -1,24 +1,38 @@
 <div class="dialog-container">
   <h2>Log in</h2>
 
-  <form (ngSubmit)="login()">
+  <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
     <div class="input-con dis-flx-col">
-      <label for="email-input">
+      <label for="email-input" class="pos-rel">
         <input
+          #emailInput="ngModel"
+          [(ngModel)]="email"
           type="email"
           name="email"
           id="email-input"
           placeholder="Email Address"
-        />
+          required
+        />@if(!emailInput.valid && (emailInput.touched || loginForm.submitted))
+        {
+        <span class="invalid-text">Your email is required</span>
+        }
       </label>
-      <label for="password-input">
+
+      <label for="password-input" class="pos-rel">
         <input
+          #passwordInput="ngModel"
+          [(ngModel)]="password"
           type="password"
           name="password"
           id="password-input"
           placeholder="Password"
-        />
+          required
+        />@if(!passwordInput.valid && (passwordInput.touched ||
+        loginForm.submitted)) {
+        <span class="invalid-text">This field is required</span>
+        }
       </label>
+
       <label for="remember-checkbox" class="remember-label"
         ><input type="checkbox" name="remember" id="remember-checkbox" />
         Remember me</label
@@ -27,12 +41,10 @@
     <input type="button" value="Log in" />
   </form>
 
-  <button mat-dialog-close (click)="openDialog('forgotPassword')">
-    Forgot password?
-  </button>
+  <button (click)="openDialog('forgotPassword')">Forgot password?</button>
 
   <div class="signup-con">
     <span>New to Videoflix?</span>
-    <button mat-dialog-close (click)="openDialog('signUp')">Sign Up now</button>
+    <button (click)="openDialog('signUp')">Sign Up now</button>
   </div>
 </div>

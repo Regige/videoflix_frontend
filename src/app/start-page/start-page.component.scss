@@ -1,15 +1,5 @@
 @import './../../styles.scss';
 
-app-header {
-    position: absolute;
-    top: 0;
-}
-
-app-footer {
-    position: absolute;
-    bottom: 0;
-}
-
 
 .start-info {
     display: flex;
@@ -42,6 +32,7 @@ app-footer {
     .start-act { 
         display: flex;
         gap: 16px;
+        position: relative;
 
         input {
             @include font18(400);
@@ -61,16 +52,14 @@ app-footer {
             }
         }
 
-        button {
+        input[type="submit"] {
             @include btn();
             @include font18(700);
             background-image: url('./../../assets/img/icon/chevron_right.svg');
             background-repeat: no-repeat;
             background-position: right 20px bottom 50%;
             padding-right: 52px;
+            width: auto;
         }
-    }
-
-    
+    }   
 }
-// @include font18(700);

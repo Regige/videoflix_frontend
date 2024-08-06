@@ -2,6 +2,8 @@
 
 body {
     margin: 0;
+    background-color: black;
+    overflow-x: hidden;
 }
 
 * {
@@ -9,6 +11,12 @@ body {
     font-family: 'DM Sans';
 }
 
+
+@mixin font15($fontWeight) {
+    font-size: 15px;
+    line-height: 19.53px;
+    font-weight: $fontWeight;
+}
 
 @mixin font18($fontWeight) {
     font-size: 18px;
@@ -25,6 +33,12 @@ body {
 @mixin font48($fontWeight) {
     font-size: 48px;
     line-height: 62.5px;
+    font-weight: $fontWeight;
+}
+
+@mixin font88($fontWeight) {
+    font-size: 88px;
+    line-height: 114.58px;
     font-weight: $fontWeight;
 }
 
@@ -101,6 +115,26 @@ app-start-page {
 }
 
 
+app-header {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+}
+
+app-footer {
+    position: absolute;
+    bottom: 0;
+}
+
+
+main {
+    // background-color: black;
+    color: white;
+    height: 100vh;
+    width: 100vw;
+}
+
+
 .dialog-bor-rad {
     .mdc-dialog__surface {
         border-radius: 48px !important;
@@ -115,6 +149,62 @@ app-start-page {
     display: flex;
     flex-direction: column;
 }
+
+.pos-rel {
+    position:  relative !important;
+}
+
+
+.invalid-text {
+    @include font15(400);
+    background-image: url('./assets/img/icon/warning.svg');
+    background-repeat: no-repeat;
+    background-position: 0 50%;
+    color: #FF002E;
+    padding-left: 20px;
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+}
+
+
+
+// scrollbar
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+// * {
+//     scrollbar-width: thin;
+//     scrollbar-color: #2E3EDF black;
+// }
+
+// /* Chrome, Edge, and Safari */
+// *::-webkit-scrollbar {
+//     width: 8px;
+// }
+
+// *::-webkit-scrollbar-track {
+//     background: transparent;
+// }
+
+// *::-webkit-scrollbar-thumb {
+//     background-color: #2E3EDF;
+//     border-radius: 10px;
+//     border: 3px solid transparent;
+// }
+
+* {
+    scrollbar-width: none !important;
+        /* Firefox */
+    -ms-overflow-style: none !important;
+        
+            /* Internet Explorer 10+ */
+    &::-webkit-scrollbar {
+                /* Webkit */
+        display: none !important;
+    }
+}
+
 
 
 // font

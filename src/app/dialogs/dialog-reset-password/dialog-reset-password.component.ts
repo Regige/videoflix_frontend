@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-dialog-reset-password',
@@ -10,7 +10,13 @@ import { FormsModule } from '@angular/forms';
 })
 export class DialogResetPasswordComponent {
 
-  resetPassword() {
+  password1: string = '';
+  password2: string = '';
+
+  resetPassword(form: NgForm) {
+    if(form.valid) {
+      
+    }
 
   }
 }

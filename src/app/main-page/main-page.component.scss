@@ -1,0 +1,99 @@
+@import './../../styles.scss';
+
+
+main {
+    position: relative;
+
+    .preview-img {
+        position: fixed;
+        top: 0;
+        left: 0;
+        object-fit: cover;
+        height: 66vh;
+        width: 100vw;
+    }
+
+    .preview-bg {
+        background: linear-gradient(to bottom, rgba(20, 20, 20, 0.6), rgba(20, 20, 20, 0.1), rgba(0, 0, 0, 1));
+        position: fixed;
+        height: 66vh;
+        width: 100%;
+    }
+
+    .preview-container {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        gap: 32px;
+        position: relative;
+        height: 66vh;
+        width: 100%;
+        padding: 108px 96px 0px 96px;
+        
+        h1 {
+            margin: 0;
+            @include font88(700);
+        }
+
+        p {
+            margin: 0;
+            width: 40vw;
+            min-width: 320px;
+        }
+
+        button {
+            @include btn();
+            @include font18(700);
+        }
+
+        .btn-play {
+            padding-left: 52px;
+            background-image: url('./../../assets/img/icon/play_arrow.svg');
+            background-repeat: no-repeat;
+            background-position: 20px 50%;
+        }
+    }
+
+    .selection-container {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        gap: 48px;
+        margin-top: -40px;
+        padding: 0px 96px 96px 96px;
+        position: relative;
+
+        section {
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            gap: 16px;
+
+            h3 {
+                margin: 0px;
+            }
+
+            div {
+                display: flex;
+                align-items: center;
+                gap: 16px;
+                // overflow-x: scroll;
+                overflow-x: hidden;
+                width: calc(100vw - 112px);
+
+                scrollbar-width: none !important; /* Firefox */                
+                -ms-overflow-style: none !important; /* Internet Explorer 10+ */          
+                &::-webkit-scrollbar { /* Webkit */
+                    display: none !important;
+                }
+
+                img {
+                    background-color: white;
+                    height: 120px;
+                    width: 214px;
+                }
+            }
+        }
+
+    }
+}

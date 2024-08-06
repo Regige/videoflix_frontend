@@ -6,30 +6,46 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogSignupComponent } from '../dialogs/dialog-signup/dialog-signup.component';
 import { DialogResetPasswordComponent } from '../dialogs/dialog-reset-password/dialog-reset-password.component';
 import { StartService } from '../services/start.service';
+import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-start-page',
   standalone: true,
-  imports: [ MatDialogModule, HeaderComponent, FooterComponent ],
+  imports: [ MatDialogModule, HeaderComponent, FooterComponent, FormsModule ],
   templateUrl: './start-page.component.html',
   styleUrl: './start-page.component.scss'
 })
 export class StartPageComponent {
+  email: string = '';
 
   readonly dialog = inject(MatDialog);
 
   constructor(public start: StartService) {}
 
-  openDialog() {
-    this.dialog.open(DialogSignupComponent, { panelClass: ['dialog-bor-rad'] });
-    this.start.dialogOpen = true;
+  openSignUp(form: NgForm) {
+    
+    if(form.valid) {
+      console.log("Wird gestartet!");
+      
+      this.start.dialogOpen = true;
+  
+      const dialogRef = this.dialog.open(DialogSignupComponent, { panelClass: ['dialog-bor-rad'] });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        this.start.dialogOpen = false;
+      });
+    }
   }
 
 
 
 
   openDialogReset() {
-    this.dialog.open(DialogResetPasswordComponent, { panelClass: ['dialog-bor-rad'] });
     this.start.dialogOpen = true;
+    const dialogRef = this.dialog.open(DialogResetPasswordComponent, { panelClass: ['dialog-bor-rad'] });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.start.dialogOpen = false;
+    });
   }
 }

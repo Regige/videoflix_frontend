@@ -5,7 +5,7 @@ import { MatDialogActions,
   MatDialogContent,
   MatDialogTitle,
 } from '@angular/material/dialog';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-dialog-signup',
@@ -16,6 +16,14 @@ import { FormsModule } from '@angular/forms';
 })
 export class DialogSignupComponent {
 
-  register() {}
+  email: string = '';
+  password1: string = '';
+  password2: string = '';
+
+  register(form: NgForm) {
+    if(form.valid) {
+      
+    }
+  }
 
 }

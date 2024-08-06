@@ -7,13 +7,28 @@
     <h3>Watch whenever you want wherever you want</h3>
     <p>Enter your email to create or restart your subscription.</p>
   </div>
-  <div class="start-act">
-    <input type="email" name="" id="" placeholder="Email Address" />
-    <button (click)="openDialog()">Sign Up</button>
-    <!-- <button (click)="openDialogReset()">Reset password</button> -->
-  </div>
-</div>
 
+  <form
+    #emailForm="ngForm"
+    (ngSubmit)="openSignUp(emailForm)"
+    class="start-act"
+  >
+    <input
+      #emailInput="ngModel"
+      [(ngModel)]="email"
+      type="email"
+      name="email"
+      id="email-start"
+      placeholder="Email Address"
+      required
+    />
+    <input type="submit" value="Sign Up" />
+    @if(!emailInput.valid && (emailInput.touched || emailForm.submitted)) {
+    <span class="invalid-text">Your email is required</span>
+    }
+    <!-- <button (click)="openDialogReset()">Reset password</button> -->
+  </form>
+</div>
 }
 
 <app-footer></app-footer>

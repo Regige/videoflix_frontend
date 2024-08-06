@@ -1,28 +1,57 @@
 <div class="dialog-container">
   <h2>Sign Up</h2>
 
-  <form (ngSubmit)="register()">
-    <label for="email-address">
+  <form #signUpForm="ngForm" (ngSubmit)="register(signUpForm)">
+    <label for="email-address" class="pos-rel">
       <input
+        #emailInput="ngModel"
+        [(ngModel)]="email"
         type="email"
         name="email"
         id="email-address"
         placeholder="Email Address"
-    /></label>
-    <label for="password1">
+        required=""
+      />
+      @if(!emailInput.valid && (emailInput.touched || signUpForm.submitted)) {
+      <span class="invalid-text">Your email is required</span>
+      }
+    </label>
+
+    <label for="password1" class="pos-rel">
       <input
+        #password1Input="ngModel"
+        [(ngModel)]="password1"
         type="password"
         name="password1"
         id="password1"
         placeholder="Enter a Password"
-    /></label>
-    <label for="password2">
+        required
+      />
+      @if(!password1Input.valid && (password1Input.touched ||
+      signUpForm.submitted)) {
+      <span class="invalid-text">This field is required</span>
+      }
+    </label>
+
+    <label for="password2" class="pos-rel">
       <input
+        #password2Input="ngModel"
+        [(ngModel)]="password2"
         type="password"
         name="password2"
         id="password2"
         placeholder="Confirm Password"
-    /></label>
-    <input type="button" value="Get Started" />
+        required
+      />
+      <!-- @if(!password2Input.valid && (password2Input.touched ||
+      signUpForm.submitted)) {
+      <span class="invalid-text">This field is required</span>
+      } -->
+      @if(password1Input !== password2Input && signUpForm.submitted) {
+      <span class="invalid-text">Password does not match</span>
+      }
+    </label>
+
+    <input type="submit" value="Get Started" />
   </form>
 </div>

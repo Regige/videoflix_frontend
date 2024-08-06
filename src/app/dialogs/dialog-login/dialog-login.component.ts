@@ -5,11 +5,12 @@ import { MatDialogActions,
   MatDialogContent,
   MatDialogTitle,
 } from '@angular/material/dialog';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DialogSignupComponent } from '../dialog-signup/dialog-signup.component';
 import { DialogForgotPasswordComponent } from '../dialog-forgot-password/dialog-forgot-password.component';
+import { StartService } from '../../services/start.service';
 
 @Component({
   selector: 'app-dialog-login',
@@ -19,19 +20,44 @@ import { DialogForgotPasswordComponent } from '../dialog-forgot-password/dialog-
   styleUrl: './dialog-login.component.scss'
 })
 export class DialogLoginComponent {
+
+  email: string = '';
+  password: string = '';
+
   readonly dialog = inject(MatDialog);
 
-  login() {
+
+  constructor(public start: StartService, public dialogRefLogin: MatDialogRef<DialogLoginComponent>,) {}
+
+  login(form: NgForm) {
+    if(form.valid) {
+
+    }
 
   }
 
 // am besten im parent Element ausführen!
   openDialog(dialog: string) {
-    if(dialog === 'forgotPassword') {
-      this.dialog.open(DialogForgotPasswordComponent, { panelClass: ['dialog-bor-rad'] });
-    } else if(dialog === 'signUp') {
-      this.dialog.open(DialogSignupComponent, { panelClass: ['dialog-bor-rad'] });
-    }
+    this.dialogRefLogin.close();
+    this.dialogRefLogin.afterClosed().subscribe(() => {
+      this.start.dialogOpen = true;
+      if(dialog === 'forgotPassword') {
+        const dialogRef = this.dialog.open(DialogForgotPasswordComponent, { panelClass: ['dialog-bor-rad'] });
+
+        dialogRef.afterClosed().subscribe(result => {
+        this.start.dialogOpen = false;
+      });
+
+      } else if(dialog === 'signUp') {
+        const dialogRef = this.dialog.open(DialogSignupComponent, { panelClass: ['dialog-bor-rad'] });
+
+        dialogRef.afterClosed().subscribe(result => {
+        this.start.dialogOpen = false;
+      });
+
+      }
+    });
   }
+
 
 }
