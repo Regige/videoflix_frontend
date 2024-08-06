@@ -47,11 +47,16 @@
       signUpForm.submitted)) {
       <span class="invalid-text">This field is required</span>
       } -->
-      @if(password1Input !== password2Input && signUpForm.submitted) {
+      @if(password1Input.value !== password2Input.value && signUpForm.submitted)
+      {
       <span class="invalid-text">Password does not match</span>
       }
     </label>
 
-    <input type="submit" value="Get Started" />
+    <input
+      type="submit"
+      value="Get Started"
+      [class.btn-disabled]="!signUpForm.valid"
+    />
   </form>
 </div>

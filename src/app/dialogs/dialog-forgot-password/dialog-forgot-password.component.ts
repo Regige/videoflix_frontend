@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-dialog-forgot-password',
@@ -10,8 +10,12 @@ import { FormsModule } from '@angular/forms';
 })
 export class DialogForgotPasswordComponent {
 
+  email: string = '';
 
-  sendEmailForPassword() {
+  sendEmailForPassword(form: NgForm) {
+    if(form.valid) {
+      
+    }
 
   }
 }

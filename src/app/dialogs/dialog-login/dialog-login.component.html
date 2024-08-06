@@ -38,7 +38,11 @@
         Remember me</label
       >
     </div>
-    <input type="button" value="Log in" />
+    <input
+      type="submit"
+      value="Log in"
+      [class.btn-disabled]="!loginForm.valid"
+    />
   </form>
 
   <button (click)="openDialog('forgotPassword')">Forgot password?</button>
