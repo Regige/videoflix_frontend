@@ -18,15 +18,33 @@ body {
     font-weight: $fontWeight;
 }
 
+@mixin font16($fontWeight) {
+    font-size: 16px;
+    line-height: 20.83px;
+    font-weight: $fontWeight;
+}
+
 @mixin font18($fontWeight) {
     font-size: 18px;
     line-height: 23.44px;
     font-weight: $fontWeight;
 }
 
+@mixin font20($fontWeight) {
+    font-size: 20px;
+    line-height: 26.04px;
+    font-weight: $fontWeight;
+}
+
 @mixin font24($fontWeight) {
     font-size: 24px;
     line-height: 31.25px;
+    font-weight: $fontWeight;
+}
+
+@mixin font40($fontWeight) {
+    font-size: 40px;
+    line-height: 40px;
     font-weight: $fontWeight;
 }
 
@@ -73,6 +91,11 @@ body {
          align-items: center;
          gap: 32px;
     }
+
+    @media (max-width: 640px) {
+        padding: 43px 24px;
+        width: 358px;
+    }
 }
 
 
@@ -92,6 +115,11 @@ body {
     &:focus {
         outline: none;
     }
+
+    @media (max-width: 640px) {
+        width: 310px;
+    }
+
 }
 
 

@@ -15,6 +15,7 @@ import { StartService } from '../../services/start.service';
 export class HeaderComponent {
   readonly dialog = inject(MatDialog);
   currentRoute: string = '';
+  isMobile = false;
 
 
   constructor(private router: Router, public start: StartService) {
@@ -28,7 +29,14 @@ export class HeaderComponent {
 
   ngOnInit(): void {
     this.currentRoute = this.router.url;
-    console.log('currentRoute is: ', this.currentRoute)
+
+    this.checkScreenWidth();
+  }
+
+  checkScreenWidth(): void {
+    this.isMobile = window.innerWidth < 640;
+    console.log("so sieht isMobile aus", this.isMobile);
+    
   }
 
 

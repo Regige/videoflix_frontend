@@ -7,6 +7,7 @@
     align-items: center;
     gap: 32px;
     color: white;
+    padding: 0px 16px;
 
     .start-tx {
         display: flex;
@@ -17,15 +18,30 @@
         h1 {
             @include font48(700);
             margin: 0;
+            text-align: center;
+
+            @media (max-width: 768px) {
+                @include font40(700);
+            }
         }
 
         h3 {
             @include font24(500);
             margin: 0;
+            text-align: center;
+
+            @media (max-width: 768px) {
+                @include font20(500);
+            }
         }
         p {
             @include font18(400);
             margin: 0;
+            text-align: center;
+
+            @media (max-width: 768px) {
+                @include font16(400);
+            }
         }
     }
 
@@ -50,6 +66,10 @@
             &:focus {
                 outline: none;
             }
+
+            @media (max-width: 768px) {
+                width: 304px;
+            }
         }
 
         input[type="submit"] {
@@ -60,6 +80,11 @@
             background-position: right 20px bottom 50%;
             padding-right: 52px;
             width: auto;
+        }
+
+        @media (max-width: 768px) {
+            flex-direction: column;
+            align-items: center;
         }
     }   
 }

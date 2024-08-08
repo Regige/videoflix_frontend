@@ -1,10 +1,10 @@
 <header>
   <!-- left -->
-  @if(currentRoute === '/start-page' || currentRoute === '/privacy-police' ||
-  currentRoute === '/imprint') {
-  <img src="assets/img/Logo.svg" alt="Logo" />
-  } @else if(currentRoute === '/main-page') {
+  @if(currentRoute === '/main-page' || isMobile) {
   <img src="assets/img/Symbol.svg" alt="Logo" />
+  } @else if(currentRoute === '/start-page' || currentRoute ===
+  '/privacy-police' || currentRoute === '/imprint') {
+  <img src="assets/img/Logo.svg" alt="Logo" />
   }
 
   <!-- right -->

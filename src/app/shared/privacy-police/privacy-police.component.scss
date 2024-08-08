@@ -2,4 +2,8 @@
 
 main {
     padding: 112px 96px;
+
+    @media (max-width: 640px) {
+        padding: 71px 16px 71px 16px;
+    }
 }
