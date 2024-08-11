@@ -6,6 +6,7 @@ import { MatDialogActions,
   MatDialogTitle,
 } from '@angular/material/dialog';
 import { FormsModule, NgForm } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-dialog-signup',
@@ -20,9 +21,26 @@ export class DialogSignupComponent {
   password1: string = '';
   password2: string = '';
 
-  register(form: NgForm) {
+  constructor(private as: AuthService) {}
+
+  async register(form: NgForm) {
     if(form.valid) {
-      
+      try {
+        // email muss noch klein geschrrieben werden
+        // checken ob beide passworter gleich sind, erst dann weiter!
+        let resp: any = await this.as.registerWithEmailAndPassword(this.email, this.password1);
+        console.log(resp);
+
+        // localStorage.setItem('access_token', resp['access']);
+        // localStorage.setItem('refresh_token', resp['refresh']);
+        // this.dialogRefLogin.close();
+        
+        // this.router.navigateByUrl('/main-page');
+
+      } catch(e) {
+        console.error(e);
+      }
+
     }
   }
 

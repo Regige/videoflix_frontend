@@ -11,6 +11,8 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DialogSignupComponent } from '../dialog-signup/dialog-signup.component';
 import { DialogForgotPasswordComponent } from '../dialog-forgot-password/dialog-forgot-password.component';
 import { StartService } from '../../services/start.service';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-dialog-login',
@@ -27,16 +29,29 @@ export class DialogLoginComponent {
   readonly dialog = inject(MatDialog);
 
 
-  constructor(public start: StartService, public dialogRefLogin: MatDialogRef<DialogLoginComponent>,) {}
+  constructor(public start: StartService, public dialogRefLogin: MatDialogRef<DialogLoginComponent>, private as: AuthService, private router: Router) {}
 
-  login(form: NgForm) {
+  async login(form: NgForm) {
     if(form.valid) {
+      try {
+        // email muss noch klein geschrrieben werden
+        let resp: any = await this.as.loginWithEmailAndPassword(this.email, this.password);
+        console.log(resp);
 
+        localStorage.setItem('access_token', resp['access']);
+        localStorage.setItem('refresh_token', resp['refresh']);
+        this.dialogRefLogin.close();
+        
+        this.router.navigateByUrl('/main-page');
+
+      } catch(e) {
+        console.error(e);
+      }
     }
-
   }
 
-// am besten im parent Element ausführen!
+
+
   openDialog(dialog: string) {
     this.dialogRefLogin.close();
     this.dialogRefLogin.afterClosed().subscribe(() => {

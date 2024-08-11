@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogLoginComponent } from '../../dialogs/dialog-login/dialog-login.component';
 import { Router, NavigationEnd, RouterModule } from '@angular/router';
 import { StartService } from '../../services/start.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -18,7 +19,7 @@ export class HeaderComponent {
   isMobile = false;
 
 
-  constructor(private router: Router, public start: StartService) {
+  constructor(private router: Router, public start: StartService, private auth: AuthService) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.currentRoute = event.urlAfterRedirects;
@@ -52,7 +53,7 @@ export class HeaderComponent {
 
 
   logout() {
-    
+    this.auth.logoutUser();
   }
 
 
