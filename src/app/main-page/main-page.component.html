@@ -19,10 +19,17 @@
     <section>
       <h3>New on Videoflix</h3>
       <div>
-        <img src="" alt="" /><img src="" alt="" /><img src="" alt="" /><img
-          src=""
-          alt=""
-        /><img src="" alt="" /><img src="" alt="" /><img src="" alt="" />
+        @for(video of this.data.videos; track video.id; let i = $index) {
+        <img [src]="video.thumbnail" alt="" (click)="startVideo(video.id)" />
+        <video
+          [id]="'videoPlayer_' + video.id"
+          [src]="video.video_file"
+          controls
+          hidden
+        >
+          Your browser does not support the video tag.
+        </video>
+        }
       </div>
     </section>
 

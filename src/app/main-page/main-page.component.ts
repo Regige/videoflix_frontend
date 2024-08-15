@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { HeaderComponent } from '../shared/header/header.component';
 import { DataService } from '../services/data.service';
+import { Video } from '../interfaces/video';
+import { environment } from '../../environments/environment.development';
 
 @Component({
   selector: 'app-main-page',
@@ -18,11 +20,11 @@ export class MainPageComponent {
   async ngOnInit() {
     try {
         
-      this.data.videos = await this.data.loadVideos();
+      // this.data.videos = await this.data.loadVideos();
         
-        // const rawVideos: any = await this.data.loadVideos();
+      const rawVideos: any = await this.data.loadVideos();
         
-        // this.data.videos = this.mapContacts(rawContacts);
+      this.data.videos = this.mapVideos(rawVideos);
 
       console.log(this.data.videos);
 
@@ -31,19 +33,41 @@ export class MainPageComponent {
       console.log(e);
       this.error = 'Fehler beim Laden!';
     }
-
   }
 
 
-  // mapContacts(rawContacts: any[]): Contact[] {
-  //     return rawContacts.map(contact => ({
-  //       id: contact.id,
-  //       title: contact.title,
-  //       email: contact.email,
-  //       phone: contact.phone,
-  //       hex_color: contact.hex_color,
-  //       logogram: contact.logogram
-  //     } as Contact));
-  //   }
+  mapVideos(rawVideos: any[]): Video[] {
+      return rawVideos.map(video => ({
+        id: video.id,
+        title: video.title,
+        description: video.description,
+        created_at: video.created_at,
+        category: video.category,
+        thumbnail: environment.baseUrl + video.thumbnail,
+        video_file: environment.baseUrl + video.video_file
+      } as Video));
+  }
+
+
+
+  startVideo(id: number): void {
+    const videoElement = document.getElementById('videoPlayer_' + id) as HTMLVideoElement;
+
+    if (videoElement) {
+      videoElement.hidden = false;
+      videoElement.play();
+      if (videoElement.requestFullscreen) {
+        videoElement.requestFullscreen();
+      } 
+      // else if (videoElement.mozRequestFullScreen) { /* Firefox */
+      //   videoElement.mozRequestFullScreen();
+      // } else if (videoElement.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+      //   videoElement.webkitRequestFullscreen();
+      // } else if (videoElement.msRequestFullscreen) { /* IE/Edge */
+      //   videoElement.msRequestFullscreen();
+      // }
+    }
+  }
 
 }
+

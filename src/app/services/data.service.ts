@@ -26,6 +26,4 @@ export class DataService {
   loadVideos() {
     return lastValueFrom(this.http.get(this.urlVideo));
   }
-
-
 }
