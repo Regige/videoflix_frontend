@@ -12,6 +12,7 @@ main {
         height: 66vh;
         width: 100vw;
     }
+    
 
     .preview-bg {
         background: linear-gradient(to bottom, rgba(20, 20, 20, 0.6), rgba(20, 20, 20, 0.1), rgba(0, 0, 0, 1));
@@ -73,13 +74,16 @@ main {
                 margin: 0px;
             }
 
-            div {
+            .section-div {
                 display: flex;
                 align-items: center;
                 gap: 16px;
-                // overflow-x: scroll;
-                overflow-x: hidden;
-                width: calc(100vw - 112px);
+                height: 140px;
+
+                overflow-x: scroll;
+                scroll-snap-type: x mandatory;
+                // width: calc(100vw - 112px);
+                width: calc(100vw - 96px);
 
                 scrollbar-width: none !important; /* Firefox */                
                 -ms-overflow-style: none !important; /* Internet Explorer 10+ */          
@@ -87,11 +91,27 @@ main {
                     display: none !important;
                 }
 
-                img {
-                    background-color: white;
-                    height: 120px;
-                    width: 214px;
-                }
+                // .img-con {
+                //     display: flex;
+                //     align-items: center;
+                //     justify-content: center;
+                //     // height: 140px;
+                //     // width: 234px;
+                //     padding: 8px;
+                    
+                    img {
+                        height: 120px;
+                        width: 214px;
+                        object-fit: cover;
+                        scroll-snap-align: start;
+                        transition: transform 0.3s ease;
+
+                        &:hover {
+                            transform: scale(1.05);
+                        }
+                    }
+                // }
+
             }
         }
 

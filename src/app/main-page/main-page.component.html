@@ -1,66 +1,60 @@
 <app-header></app-header>
 
 <main>
-  <img class="preview-img" src="assets/img/wale.jpeg" alt="" />
+  <img class="preview-img" [src]="selVideo.thumbnail" alt="" />
   <div class="preview-bg"></div>
   <div class="preview-container">
-    <h1>Breakout</h1>
+    <h1>{{ selVideo.title }}</h1>
     <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi quaerat
-      ipsa et quisquam culpa, fugit dignissimos quis voluptate officiis dolor
-      enim repudiandae molestiae, autem impedit molestias iste repellat! Eius,
-      esse!
+      {{ selVideo.description }}
     </p>
-    <button class="btn-play">Play</button>
+    <button class="btn-play" (click)="playVideo()">Play</button>
+    <video id="videoPlayer" controls hidden>
+      Your browser does not support the video tag.
+    </video>
   </div>
 
   <!-- Selection of videos -->
   <div class="selection-container">
     <section>
       <h3>New on Videoflix</h3>
-      <div>
+      <div class="section-div">
         @for(video of this.data.videos; track video.id; let i = $index) {
-        <img [src]="video.thumbnail" alt="" (click)="startVideo(video.id)" />
-        <video
-          [id]="'videoPlayer_' + video.id"
-          [src]="video.video_file"
-          controls
-          hidden
-        >
-          Your browser does not support the video tag.
-        </video>
+        @if(video.is_new) {
+        <!-- <div class="img-con"> -->
+        <img [src]="video.thumbnail" alt="" (click)="selVideoElement(video)" />
+        <!-- </div> -->
+        } }
+      </div>
+    </section>
+    @if(documentaryVideos) {
+    <section>
+      <h3>Documentary</h3>
+      <div class="section-div">
+        @for(video of documentaryVideos; track video.id) {
+        <img [src]="video.thumbnail" alt="" (click)="selVideoElement(video)" />
+        }
+      </div>
+    </section>
+    } @if(dramaVideos) {
+    <section>
+      <h3>Drama</h3>
+      <div class="section-div">
+        @for(video of dramaVideos; track video.id) {
+        <img [src]="video.thumbnail" alt="" (click)="selVideoElement(video)" />
         }
       </div>
     </section>
 
-    <section>
-      <h3>Documentary</h3>
-      <div>
-        <img src="" alt="" /><img src="" alt="" /><img src="" alt="" /><img
-          src=""
-          alt=""
-        /><img src="" alt="" /><img src="" alt="" />
-      </div>
-    </section>
-
-    <section>
-      <h3>Drama</h3>
-      <div>
-        <img src="" alt="" /><img src="" alt="" /><img src="" alt="" /><img
-          src=""
-          alt=""
-        /><img src="" alt="" /><img src="" alt="" />
-      </div>
-    </section>
-
+    } @if(romanceVideos) {
     <section>
       <h3>Romance</h3>
-      <div>
-        <img src="" alt="" /><img src="" alt="" /><img src="" alt="" /><img
-          src=""
-          alt=""
-        /><img src="" alt="" /><img src="" alt="" />
+      <div class="section-div">
+        @for(video of romanceVideos; track video.id) {
+        <img [src]="video.thumbnail" alt="" (click)="selVideoElement(video)" />
+        }
       </div>
     </section>
+    }
   </div>
 </main>

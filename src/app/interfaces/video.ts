@@ -4,7 +4,7 @@ export interface Video {
     description: string;
     created_at: string;
     category: string;
-    // is_new: boolean;
+    is_new: boolean;
     thumbnail: string;
     video_file: string;
     // video_file_480p: string;
