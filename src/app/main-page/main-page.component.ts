@@ -3,28 +3,17 @@ import { HeaderComponent } from '../shared/header/header.component';
 import { DataService } from '../services/data.service';
 import { Video } from '../interfaces/video';
 import { environment } from '../../environments/environment.development';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-main-page',
   standalone: true,
-  imports: [HeaderComponent],
+  imports: [HeaderComponent, RouterModule],
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.scss'
 })
 export class MainPageComponent {
 
-  lorem_ipsum = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi quaerat ipsa et quisquam culpa, fugit dignissimos quis voluptate officiis dolor enim repudiandae molestiae, autem impedit molestias iste repellat! Eius esse!"
-
-  selVideo: Video = {
-        id: -1,
-        title: 'Breakout',
-        description: this.lorem_ipsum,
-        created_at: '',
-        category: '',
-        is_new: true,
-        thumbnail: 'assets/img/wale.jpeg',
-        video_file: ''
-  };
   error = '';
   dramaVideos: Video[] = [];
   romanceVideos: Video[] = [];
@@ -42,9 +31,7 @@ export class MainPageComponent {
       this.sortVideos();
 
       console.log(this.data.videos);
-      console.log(this.dramaVideos);
-      console.log(this.romanceVideos);
-      console.log(this.documentaryVideos);
+      this.data.selVideo = this.documentaryVideos[0];
 
     } catch(e) {
 
@@ -69,7 +56,7 @@ export class MainPageComponent {
 
 
   selVideoElement(video: Video) {
-    this.selVideo = video;
+    this.data.selVideo = video;
   }
 
 
@@ -77,7 +64,7 @@ export class MainPageComponent {
     const videoElement = document.getElementById('videoPlayer') as HTMLVideoElement;
 
     if (videoElement) {
-      videoElement.src = this.selVideo.video_file;
+      videoElement.src = this.data.selVideo.video_file;
       videoElement.hidden = false;
       videoElement.play();
     

@@ -1,14 +1,14 @@
 <app-header></app-header>
 
 <main>
-  <img class="preview-img" [src]="selVideo.thumbnail" alt="" />
+  <img class="preview-img" [src]="data.selVideo.thumbnail" alt="" />
   <div class="preview-bg"></div>
   <div class="preview-container">
-    <h1>{{ selVideo.title }}</h1>
+    <h1>{{ data.selVideo.title }}</h1>
     <p>
-      {{ selVideo.description }}
+      {{ data.selVideo.description }}
     </p>
-    <button class="btn-play" (click)="playVideo()">Play</button>
+    <button class="btn-play" [routerLink]="['/video-player/']">Play</button>
     <video id="videoPlayer" controls hidden>
       Your browser does not support the video tag.
     </video>
@@ -19,30 +19,48 @@
     <section>
       <h3>New on Videoflix</h3>
       <div class="section-div">
-        @for(video of this.data.videos; track video.id; let i = $index) {
-        @if(video.is_new) {
-        <!-- <div class="img-con"> -->
-        <img [src]="video.thumbnail" alt="" (click)="selVideoElement(video)" />
-        <!-- </div> -->
-        } }
+        <div class="imgages-con">
+          @for(video of this.data.videos; track video.id; let i = $index) {
+          @if(video.is_new) {
+          <!-- <div class="img-con"> -->
+          <img
+            [src]="video.thumbnail"
+            alt=""
+            (click)="selVideoElement(video)"
+          />
+          <!-- </div> -->
+          } }
+        </div>
       </div>
     </section>
     @if(documentaryVideos) {
     <section>
       <h3>Documentary</h3>
       <div class="section-div">
-        @for(video of documentaryVideos; track video.id) {
-        <img [src]="video.thumbnail" alt="" (click)="selVideoElement(video)" />
-        }
+        <div class="imgages-con">
+          @for(video of documentaryVideos; track video.id) {
+          <img
+            [src]="video.thumbnail"
+            alt=""
+            (click)="selVideoElement(video)"
+          />
+          }
+        </div>
       </div>
     </section>
     } @if(dramaVideos) {
     <section>
       <h3>Drama</h3>
       <div class="section-div">
-        @for(video of dramaVideos; track video.id) {
-        <img [src]="video.thumbnail" alt="" (click)="selVideoElement(video)" />
-        }
+        <div class="imgages-con">
+          @for(video of dramaVideos; track video.id) {
+          <img
+            [src]="video.thumbnail"
+            alt=""
+            (click)="selVideoElement(video)"
+          />
+          }
+        </div>
       </div>
     </section>
 
@@ -50,9 +68,15 @@
     <section>
       <h3>Romance</h3>
       <div class="section-div">
-        @for(video of romanceVideos; track video.id) {
-        <img [src]="video.thumbnail" alt="" (click)="selVideoElement(video)" />
-        }
+        <div class="imgages-con">
+          @for(video of romanceVideos; track video.id) {
+          <img
+            [src]="video.thumbnail"
+            alt=""
+            (click)="selVideoElement(video)"
+          />
+          }
+        </div>
       </div>
     </section>
     }
