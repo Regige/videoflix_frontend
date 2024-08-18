@@ -34,7 +34,7 @@ export class DialogLoginComponent {
   async login(form: NgForm) {
     if(form.valid) {
       try {
-        // email muss noch klein geschrrieben werden
+        // email muss noch klein geschrieben werden
         let resp: any = await this.as.loginWithEmailAndPassword(this.email, this.password);
         console.log(resp);
 

@@ -3,6 +3,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogActions,
   MatDialogClose,
   MatDialogContent,
+  MatDialogRef,
   MatDialogTitle,
 } from '@angular/material/dialog';
 import { FormsModule, NgForm } from '@angular/forms';
@@ -21,7 +22,7 @@ export class DialogSignupComponent {
   password1: string = '';
   password2: string = '';
 
-  constructor(private as: AuthService) {}
+  constructor(private as: AuthService, public dialogRefLogin: MatDialogRef<DialogSignupComponent>,) {}
 
   async register(form: NgForm) {
     if(form.valid) {
@@ -31,9 +32,9 @@ export class DialogSignupComponent {
         let resp: any = await this.as.registerWithEmailAndPassword(this.email, this.password1);
         console.log(resp);
 
-        // localStorage.setItem('access_token', resp['access']);
-        // localStorage.setItem('refresh_token', resp['refresh']);
-        // this.dialogRefLogin.close();
+        localStorage.setItem('access_token', resp['access_token']);
+        localStorage.setItem('refresh_token', resp['user_data']['tokens']['refresh']);
+        this.dialogRefLogin.close();
         
         // this.router.navigateByUrl('/main-page');
 
