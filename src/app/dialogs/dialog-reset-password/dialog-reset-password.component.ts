@@ -15,7 +15,7 @@ export class DialogResetPasswordComponent {
 
   resetPassword(form: NgForm) {
     if(form.valid) {
-      
+
     }
 
   }

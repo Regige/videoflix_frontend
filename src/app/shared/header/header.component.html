@@ -3,7 +3,7 @@
   @if(currentRoute === '/main-page' || isMobile) {
   <img src="assets/img/Symbol.svg" alt="Logo" />
   } @else if(currentRoute === '/start-page' || currentRoute ===
-  '/privacy-police' || currentRoute === '/imprint') {
+  '/privacy-police' || currentRoute === '/imprint' || isResetPasswordRoute()) {
   <img src="assets/img/Logo.svg" alt="Logo" />
   } @else if(currentRoute === '/video-player') {
   <div class="img-con">
@@ -16,7 +16,7 @@
   }
 
   <!-- right -->
-  @if(currentRoute === '/start-page') {
+  @if(currentRoute === '/start-page' || isResetPasswordRoute()) {
   <button (click)="openDialog()">Log in</button>
   } @else if(currentRoute === '/main-page') {
   <button class="btn-logout" (click)="logout()">Log out</button>

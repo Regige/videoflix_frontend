@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
+import { DataService } from '../../services/data.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-dialog-forgot-password',
@@ -11,10 +13,22 @@ import { FormsModule, NgForm } from '@angular/forms';
 export class DialogForgotPasswordComponent {
 
   email: string = '';
+  emailSubmitted: boolean = false;
 
-  sendEmailForPassword(form: NgForm) {
+  
+  constructor(private as: AuthService) {}
+
+
+  async sendEmailForPasswordReset(form: NgForm) {
     if(form.valid) {
-      
+      try {
+        let resp: any = await this.as.getResetPasswordLink(this.email);
+        console.log(resp);
+        this.emailSubmitted = true;
+
+      } catch(e) {
+        console.error(e);
+      }
     }
 
   }

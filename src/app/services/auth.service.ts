@@ -62,4 +62,26 @@ export class AuthService {
 
     // evtl noch Blacklist im Backend ergänzen mit dem Code - dann mit try and catch!
   }
+
+
+
+// Get (Post) ResetPassword Link
+  
+  getResetPasswordLink(email: string) {
+    const url = environment.baseUrl + '/accounts/password_reset/';
+    const body = {
+    "email": email
+    }
+    return lastValueFrom(this.http.post(url, body));
+  }
+
+
+  resetUserPassword(password: string, token: string) {
+    const url = environment.baseUrl + '/accounts/password_reset/confirm/?token=' + token;
+    const body = {
+    "password": password,
+    "token": token
+    }
+    return lastValueFrom(this.http.post(url, body));
+  }
 }

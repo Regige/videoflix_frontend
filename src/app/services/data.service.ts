@@ -10,8 +10,7 @@ import { Video } from '../interfaces/video';
 export class DataService {
 
   lorem_ipsum = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi quaerat ipsa et quisquam culpa, fugit dignissimos quis voluptate officiis dolor enim repudiandae molestiae, autem impedit molestias iste repellat! Eius esse!"
-  
-  // thumbnails = []; //: thumbnail[]
+
   videos:any = [];
   selVideo: Video = {
         id: -1,
@@ -24,21 +23,25 @@ export class DataService {
         video_file: ''
   };
 
-  // urlThumbnails = environment.baseUrl + '/videos/thumbnails/';
   urlVideo = environment.baseUrl + '/videos/all/';
 
 
-  
   constructor(private http: HttpClient) { }
 
 
-  // loadThumbnails() {
 
-  //   return lastValueFrom(this.http.get(this.urlThumbnails));
-  // }
+// Get Videos
 
-
-  loadVideos() {
+loadVideos() {
     return lastValueFrom(this.http.get(this.urlVideo));
   }
+
+
+
+
+
+
+
 }
+
+

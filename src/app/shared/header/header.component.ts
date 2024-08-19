@@ -41,6 +41,11 @@ export class HeaderComponent {
   }
 
 
+  isResetPasswordRoute(): boolean {
+    return this.currentRoute?.startsWith('/reset-password-form') ?? false;
+  }
+
+
   openDialog() {
     this.start.dialogOpen = true;
 
