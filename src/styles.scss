@@ -130,7 +130,7 @@ body {
 
 
 
-app-start-page {
+app-start-page, app-password-reset {
     background-image: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 1)),
         url("./assets/img/start_page.jpeg");
     background-size: cover;
@@ -152,13 +152,6 @@ app-header {
 app-footer {
     position: absolute;
     bottom: 0;
-}
-
-app-password-reset {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
 }
 
 
