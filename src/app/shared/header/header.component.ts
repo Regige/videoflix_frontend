@@ -47,6 +47,7 @@ export class HeaderComponent {
 
 
   openDialog() {
+    this.auth.removeTokenFromLocalStorage();
     this.start.dialogOpen = true;
 
     const dialogRef = this.dialog.open(DialogLoginComponent, { panelClass: ['dialog-bor-rad'] });

@@ -20,7 +20,8 @@
   <button (click)="openDialog()">Log in</button>
   } @else if(currentRoute === '/main-page') {
   <button class="btn-logout" (click)="logout()">Log out</button>
-  } @else if(currentRoute === ('/privacy-police' || '/imprint')) {
+  } @else if(currentRoute === '/privacy-police' || currentRoute === '/imprint')
+  {
   <div class="img-con">
     <img
       src="assets/img/icon/arrow_back.svg"

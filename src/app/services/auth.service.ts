@@ -64,6 +64,12 @@ export class AuthService {
   }
 
 
+  removeTokenFromLocalStorage() {
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
+  }
+
+
 
 // Get (Post) ResetPassword Link
   

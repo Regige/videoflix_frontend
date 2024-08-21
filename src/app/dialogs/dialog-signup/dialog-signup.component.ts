@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogActions,
   MatDialogClose,
@@ -8,6 +8,7 @@ import { MatDialogActions,
 } from '@angular/material/dialog';
 import { FormsModule, NgForm } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dialog-signup',
@@ -22,7 +23,11 @@ export class DialogSignupComponent {
   password1: string = '';
   password2: string = '';
 
-  constructor(private as: AuthService, public dialogRefLogin: MatDialogRef<DialogSignupComponent>,) {}
+  constructor(private as: AuthService, public dialogRefLogin: MatDialogRef<DialogSignupComponent>, @Inject(MAT_DIALOG_DATA) public data: { email: string }) {}
+
+  ngOnInit() {
+    this.email = this.data.email;
+  }
 
   async register(form: NgForm) {
     if(form.valid) {

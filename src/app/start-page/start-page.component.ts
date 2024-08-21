@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogSignupComponent } from '../dialogs/dialog-signup/dialog-signup.component';
 import { StartService } from '../services/start.service';
 import { FormsModule, NgForm } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-start-page',
@@ -19,16 +20,15 @@ export class StartPageComponent {
 
   readonly dialog = inject(MatDialog);
 
-  constructor(public start: StartService) {}
+  constructor(public start: StartService, private as: AuthService) {}
 
   openSignUp(form: NgForm) {
     
     if(form.valid) {
-      console.log("Wird gestartet!");
-      
+      this.as.removeTokenFromLocalStorage();
       this.start.dialogOpen = true;
   
-      const dialogRef = this.dialog.open(DialogSignupComponent, { panelClass: ['dialog-bor-rad'] });
+      const dialogRef = this.dialog.open(DialogSignupComponent, { panelClass: ['dialog-bor-rad'], data: { email: form.value.email } }, );
   
       dialogRef.afterClosed().subscribe(result => {
         this.start.dialogOpen = false;
