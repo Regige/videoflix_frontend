@@ -1,25 +1,67 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { SpeedService } from '../services/speed.service';
 import { DataService } from '../services/data.service';
 import { HeaderComponent } from '../shared/header/header.component';
+// import { BrowserModule } from '@angular/platform-browser';
+import {VgCoreModule, VgMediaDirective} from '@videogular/ngx-videogular/core';
+import {VgControlsModule} from '@videogular/ngx-videogular/controls';
+import {VgOverlayPlayModule} from '@videogular/ngx-videogular/overlay-play';
+import {VgBufferingModule} from '@videogular/ngx-videogular/buffering';
 
 @Component({
   selector: 'app-video-player',
   standalone: true,
-  imports: [HeaderComponent],
+  imports: [HeaderComponent, VgCoreModule, VgControlsModule, VgOverlayPlayModule, VgBufferingModule],
   templateUrl: './video-player.component.html',
   styleUrl: './video-player.component.scss'
 })
 export class VideoPlayerComponent {
-
+  
   videoUrl: string = '';
+  isFullscreen: boolean = false;
+  isMuted: boolean = false;
+  
 
   constructor(private speedS: SpeedService, public data: DataService) {}
+  
 
   async ngOnInit() {
+
     // const speed = await this.speedS.measureSpeed();
     // this.videoUrl = this.speedS.selectVideoUrl(speed, this.videoInstance); 
     // Video Objekt = this.videoInstance
   }
+
+
+  
+
+  toggleScreen() {
+    let fullscreenElement = document.getElementById('vg-fullscreen');
+
+    if(fullscreenElement) {
+      this.isFullscreen = !this.isFullscreen; 
+
+      if(this.isFullscreen === true) {
+        fullscreenElement.style.backgroundImage = "url('./../../assets/img/icon/compress_white.svg')";
+      } else {
+        fullscreenElement.style.backgroundImage = "url('./../../assets/img/icon/expand_white.svg')"
+      }
+    }
+  }
+
+  toggleSound() {
+    let soundElement = document.getElementById('vg-mute');
+
+    if(soundElement) {
+      this.isMuted = !this.isMuted; 
+
+      if(this.isMuted === true) {
+        soundElement.style.backgroundImage = "url('./../../assets/img/icon/silenc.svg')";
+      } else {
+        soundElement.style.backgroundImage = "url('./../../assets/img/icon/loud.svg')"
+      }
+    }
+  }
+
 
 }

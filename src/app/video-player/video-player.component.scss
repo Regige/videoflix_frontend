@@ -2,6 +2,32 @@
 @import './../main-page/main-page.component.scss';
 
 
+app-header {
+    z-index: 201;
+}
+
+vg-play-pause {
+    background-image: url('./../../assets/img/icon/play_arrow_small.svg');
+    background-repeat: no-repeat;
+    background-size: 80%;
+    background-position: 50% 50%;
+}
+
+vg-mute {
+    background-image: url('./../../assets/img/icon/loud.svg');
+    background-repeat: no-repeat;
+    background-size: 65%;
+    background-position: 50% 50%;
+}
+
+vg-fullscreen {
+    background-image: url('./../../assets/img/icon/expand_white.svg');
+    background-repeat: no-repeat;
+    background-size: 45%;
+    background-position: 50% 50%;
+}
+
+
 .flx {
     display: flex;
     align-items: start;
@@ -15,4 +41,8 @@ video {
     // max-height: 80vh;
     width: 100vw;
     // max-width: max-content;
+}
+
+.title {
+    @include font24(700);
 }
