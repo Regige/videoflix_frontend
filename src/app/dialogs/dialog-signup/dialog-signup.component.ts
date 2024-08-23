@@ -9,6 +9,7 @@ import { MatDialogActions,
 import { FormsModule, NgForm } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dialog-signup',
@@ -22,32 +23,42 @@ export class DialogSignupComponent {
   email: string = '';
   password1: string = '';
   password2: string = '';
+  signUpError: boolean = false;
 
-  constructor(private as: AuthService, public dialogRefLogin: MatDialogRef<DialogSignupComponent>, @Inject(MAT_DIALOG_DATA) public data: { email: string }) {}
+
+  constructor(private as: AuthService, public dialogRefLogin: MatDialogRef<DialogSignupComponent>, @Inject(MAT_DIALOG_DATA) public data: { email: string }, private router: Router) {}
+
 
   ngOnInit() {
     this.email = this.data.email;
   }
 
+
   async register(form: NgForm) {
     if(form.valid) {
       try {
-        // email muss noch klein geschrrieben werden
-        // checken ob beide passworter gleich sind, erst dann weiter!
+        this.email = this.email.toLowerCase();
+        if (this.password1 !== this.password2) {
+          return;
+        }
+
         let resp: any = await this.as.registerWithEmailAndPassword(this.email, this.password1);
         console.log(resp);
 
         localStorage.setItem('access_token', resp['access_token']);
         localStorage.setItem('refresh_token', resp['user_data']['tokens']['refresh']);
         this.dialogRefLogin.close();
-        
-        // this.router.navigateByUrl('/main-page');
 
       } catch(e) {
-        console.error(e);
+        console.error('An error occurred during registration.');
+        this.signUpError = true;
+        setTimeout(() => {
+          window.location.reload();
+        }, 5000);
       }
-
     }
   }
+
+
 
 }

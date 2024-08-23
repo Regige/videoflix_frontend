@@ -31,7 +31,9 @@ export class PasswordResetComponent {
 
   async resetPassword(form: NgForm) {
     if(form.valid) {
-
+      if (this.password1 !== this.password2) {
+          return;
+      }
       if(this.token) {
         try {
           let resp: any = await this.as.resetUserPassword(this.password1, this.token);

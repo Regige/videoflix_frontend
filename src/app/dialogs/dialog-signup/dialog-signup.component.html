@@ -1,6 +1,7 @@
 <div class="dialog-container">
   <h2>Sign Up</h2>
 
+  @if(!signUpError) {
   <form #signUpForm="ngForm" (ngSubmit)="register(signUpForm)">
     <label for="email-address" class="pos-rel">
       <input
@@ -10,6 +11,7 @@
         name="email"
         id="email-address"
         placeholder="Email Address"
+        pattern="^[a-zA-Z0-9_\-\.]+@[a-zA-Z0-9_\-\.]+\.[a-zA-Z]{2,}$"
         required=""
       />
       @if(!emailInput.valid && (emailInput.touched || signUpForm.submitted)) {
@@ -25,11 +27,14 @@
         name="password1"
         id="password1"
         placeholder="Enter a Password"
+        minlength="8"
         required
       />
       @if(!password1Input.valid && (password1Input.touched ||
       signUpForm.submitted)) {
-      <span class="invalid-text">This field is required</span>
+      <span class="invalid-text"
+        >The password must be at least 8 characters long</span
+      >
       }
     </label>
 
@@ -41,12 +46,13 @@
         name="password2"
         id="password2"
         placeholder="Confirm Password"
+        minlength="8"
         required
       />
       <!-- @if(!password2Input.valid && (password2Input.touched ||
-      signUpForm.submitted)) {
-      <span class="invalid-text">This field is required</span>
-      } -->
+        signUpForm.submitted)) {
+        <span class="invalid-text">This field is required</span>
+        } -->
       @if(password1Input.value !== password2Input.value && signUpForm.submitted)
       {
       <span class="invalid-text">Password does not match</span>
@@ -59,4 +65,7 @@
       [class.btn-disabled]="!signUpForm.valid"
     />
   </form>
+  } @else if(signUpError) {
+  <h3>Something went wrong. Please try agin!</h3>
+  }
 </div>

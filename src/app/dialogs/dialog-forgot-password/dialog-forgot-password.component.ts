@@ -14,6 +14,7 @@ export class DialogForgotPasswordComponent {
 
   email: string = '';
   emailSubmitted: boolean = false;
+  ForgotPasswordError: boolean = false;
 
   
   constructor(private as: AuthService) {}
@@ -27,7 +28,11 @@ export class DialogForgotPasswordComponent {
         this.emailSubmitted = true;
 
       } catch(e) {
-        console.error(e);
+        console.error('Something went wrong!');
+        this.ForgotPasswordError = true;
+        setTimeout(() => {
+          window.location.reload();
+        }, 5000);
       }
     }
 

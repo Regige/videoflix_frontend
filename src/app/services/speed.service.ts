@@ -29,4 +29,6 @@ export class SpeedService {
       return video.video_file_360p;
     }
   }
+
+  
 }

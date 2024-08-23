@@ -31,7 +31,7 @@ export class MainPageComponent {
       this.sortVideos();
 
       console.log(this.data.videos);
-      this.data.selVideo = this.documentaryVideos[0];
+      this.data.selVideo = this.data.videos.find((video: Video) => video.is_new === true) || this.data.videos[0];
 
     } catch(e) {
 

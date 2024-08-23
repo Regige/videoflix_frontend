@@ -11,6 +11,7 @@
           name="email"
           id="email-input"
           placeholder="Email Address"
+          pattern="^[a-zA-Z0-9_\-\.]+@[a-zA-Z0-9_\-\.]+\.[a-zA-Z]{2,}$"
           required
         />@if(!emailInput.valid && (emailInput.touched || loginForm.submitted))
         {
