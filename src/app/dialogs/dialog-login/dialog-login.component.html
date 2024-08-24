@@ -1,7 +1,9 @@
 <div class="dialog-container">
   <h2>Log in</h2>
-
-  <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+  <form #loginForm="ngForm" (ngSubmit)="login(loginForm)" class="pos-rel">
+    @if(loginError) {
+    <span class="invalid-text login-error">Email or password is wrong.</span>
+    }
     <div class="input-con dis-flx-col">
       <label for="email-input" class="pos-rel">
         <input
@@ -27,6 +29,7 @@
           name="password"
           id="password-input"
           placeholder="Password"
+          minlength="8"
           required
         />@if(!passwordInput.valid && (passwordInput.touched ||
         loginForm.submitted)) {

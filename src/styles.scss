@@ -54,6 +54,12 @@ body {
     font-weight: $fontWeight;
 }
 
+@mixin font64($fontWeight) {
+    font-size: 64px;
+    line-height: 83.33px;
+    font-weight: $fontWeight;
+}
+
 @mixin font88($fontWeight) {
     font-size: 88px;
     line-height: 114.58px;
@@ -130,7 +136,7 @@ body {
 
 
 
-app-start-page, app-password-reset {
+app-start-page, app-password-reset, app-privacy-police, app-imprint {
     background-image: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 1)),
         url("./assets/img/start_page.jpeg");
     background-size: cover;

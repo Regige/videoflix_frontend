@@ -63,4 +63,11 @@ export class HeaderComponent {
   }
 
 
+  loadMainPage() {
+    if(window.innerWidth <= 592) {
+      this.router.navigateByUrl('/main-page');
+    }
+  }
+
+
 }

@@ -30,7 +30,7 @@ export class DialogSignupComponent {
 
 
   ngOnInit() {
-    this.email = this.data.email;
+    this.email = this.data?.email ?? '';
   }
 
 

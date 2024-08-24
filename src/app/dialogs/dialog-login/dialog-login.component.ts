@@ -25,6 +25,7 @@ export class DialogLoginComponent {
 
   email: string = '';
   password: string = '';
+  loginError = false;
 
   readonly dialog = inject(MatDialog);
 
@@ -47,6 +48,7 @@ export class DialogLoginComponent {
 
       } catch(e) {
         console.error(e);
+        this.loginError = true;
       }
     }
   }

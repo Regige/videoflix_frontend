@@ -6,8 +6,6 @@ export interface Video {
     category: string;
     is_new: boolean;
     thumbnail: string;
+    thumbnail_bg: string;
     video_file: string;
-    // video_file_360p: string;
-    // video_file_720p: string;
-    // video_file_1080p: string;
 }

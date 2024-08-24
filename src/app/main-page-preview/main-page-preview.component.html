@@ -1,0 +1,13 @@
+<app-header></app-header>
+
+<main>
+  <img class="preview-img" [src]="data.selVideo.thumbnail_bg" alt="" />
+  <div class="preview-bg"></div>
+  <div class="preview-container">
+    <h1>{{ data.selVideo.title }}</h1>
+    <p>
+      {{ data.selVideo.description }}
+    </p>
+    <button class="btn-play" [routerLink]="['/video-player/']">Play</button>
+  </div>
+</main>

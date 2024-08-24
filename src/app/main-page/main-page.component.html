@@ -1,7 +1,8 @@
 <app-header></app-header>
 
 <main>
-  <img class="preview-img" [src]="data.selVideo.thumbnail" alt="" />
+  @if(isDesktopScreen) {
+  <img class="preview-img" [src]="data.selVideo.thumbnail_bg" alt="" />
   <div class="preview-bg"></div>
   <div class="preview-container">
     <h1>{{ data.selVideo.title }}</h1>
@@ -9,10 +10,8 @@
       {{ data.selVideo.description }}
     </p>
     <button class="btn-play" [routerLink]="['/video-player/']">Play</button>
-    <video id="videoPlayer" controls hidden>
-      Your browser does not support the video tag.
-    </video>
   </div>
+  }
 
   <!-- Selection of videos -->
   <div class="selection-container">

@@ -20,6 +20,7 @@ export class DataService {
         category: '',
         is_new: true,
         thumbnail: 'assets/img/wale.jpeg',
+        thumbnail_bg: 'assets/img/wale.jpeg',
         video_file: ''
   };
 

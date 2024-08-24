@@ -3,7 +3,7 @@ import { HeaderComponent } from '../shared/header/header.component';
 import { DataService } from '../services/data.service';
 import { Video } from '../interfaces/video';
 import { environment } from '../../environments/environment.development';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-main-page',
@@ -18,12 +18,14 @@ export class MainPageComponent {
   dramaVideos: Video[] = [];
   romanceVideos: Video[] = [];
   documentaryVideos: Video[] = [];
+  isDesktopScreen: boolean = true;
 
 
-  constructor(public data: DataService) {}
+  constructor(public data: DataService, private router: Router) {}
 
 
   async ngOnInit() {
+    this.isDesktopScreen = window.innerWidth > 592;
     try {
       const rawVideos: any = await this.data.loadVideos();
         
@@ -50,6 +52,7 @@ export class MainPageComponent {
         category: video.category,
         is_new: video.is_new,
         thumbnail: environment.baseUrl + video.thumbnail,
+        thumbnail_bg: environment.baseUrl + video.thumbnail_bg,
         video_file: environment.baseUrl + video.video_file
       } as Video));
   }
@@ -57,6 +60,10 @@ export class MainPageComponent {
 
   selVideoElement(video: Video) {
     this.data.selVideo = video;
+
+    if(window.innerWidth <= 592) {
+      this.router.navigateByUrl('/main-page-preview');
+    }
   }
 
 

@@ -1,7 +1,7 @@
 <header>
   <!-- left -->
   @if(currentRoute === '/main-page' || isMobile) {
-  <img src="assets/img/Symbol.svg" alt="Logo" />
+  <img src="assets/img/Symbol.svg" alt="Logo" (click)="loadMainPage()" />
   } @else if(currentRoute === '/start-page' || currentRoute ===
   '/privacy-police' || currentRoute === '/imprint' || isResetPasswordRoute()) {
   <img src="assets/img/Logo.svg" alt="Logo" />
@@ -18,7 +18,8 @@
   <!-- right -->
   @if(currentRoute === '/start-page' || isResetPasswordRoute()) {
   <button (click)="openDialog()">Log in</button>
-  } @else if(currentRoute === '/main-page') {
+  } @else if(currentRoute === '/main-page' || currentRoute ===
+  '/main-page-preview') {
   <button class="btn-logout" (click)="logout()">Log out</button>
   } @else if(currentRoute === '/privacy-police' || currentRoute === '/imprint')
   {
@@ -29,7 +30,7 @@
       [routerLink]="['/start-page/']"
     />
   </div>
-  } @else if(currentRoute === '/video-player') {
+  } @else if(currentRoute === '/video-player' && !isMobile) {
   <img src="assets/img/Symbol.svg" alt="Logo" />
   }
 </header>
