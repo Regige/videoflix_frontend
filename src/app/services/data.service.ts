@@ -39,7 +39,7 @@ loadVideos() {
 
 
   checkForSelVideo() {
-    const videoJson = localStorage.getItem('selected_video');
+    const videoJson = sessionStorage.getItem('selected_video');
 
     if (videoJson) {
       const savedVideo: Video = JSON.parse(videoJson);

@@ -33,14 +33,18 @@ export class MainPageComponent {
       this.sortVideos();
 
       console.log(this.data.videos);
-      this.data.selVideo = this.data.videos.find((video: Video) => video.is_new === true) || this.data.videos[0];
+
+      this.data.checkForSelVideo();
+      if(this.data.selVideo.id === -1) {
+        this.data.selVideo = this.data.videos.find((video: Video) => video.is_new === true) || this.data.videos[0];
+      }
 
     } catch(e) {
 
       console.log(e);
       this.error = 'Fehler beim Laden!';
+      this.router.navigateByUrl('/start-page');
     }
-    this.data.checkForSelVideo();
   }
 
 
@@ -63,7 +67,7 @@ export class MainPageComponent {
     this.data.selVideo = video;
 
     const videoJson = JSON.stringify(video);
-    localStorage.setItem('selected_video',videoJson);
+    sessionStorage.setItem('selected_video',videoJson);
 
     if(window.innerWidth <= 592) {
       this.router.navigateByUrl('/main-page-preview');

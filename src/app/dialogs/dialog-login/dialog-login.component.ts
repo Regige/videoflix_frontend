@@ -25,7 +25,9 @@ export class DialogLoginComponent {
 
   email: string = '';
   password: string = '';
+  remember: boolean = false;
   loginError = false;
+
 
   readonly dialog = inject(MatDialog);
 
@@ -40,8 +42,19 @@ export class DialogLoginComponent {
         let resp: any = await this.as.loginWithEmailAndPassword(this.email, this.password);
         console.log(resp);
 
+        console.log("so sieht remember aus:", this.remember);
+
+      if (this.remember) {
         localStorage.setItem('access_token', resp['access']);
         localStorage.setItem('refresh_token', resp['refresh']);
+      } else {
+        sessionStorage.setItem('access_token', resp['access']);
+        sessionStorage.setItem('refresh_token', resp['refresh']);
+      }
+
+        // localStorage.setItem('access_token', resp['access']);
+        // localStorage.setItem('refresh_token', resp['refresh']);
+
         this.dialogRefLogin.close();
         
         this.router.navigateByUrl('/main-page');

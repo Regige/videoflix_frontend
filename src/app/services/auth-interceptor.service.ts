@@ -13,7 +13,11 @@ export class AuthInterceptorService implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    const token = localStorage.getItem('access_token');
+    let token;
+    token = sessionStorage.getItem('access_token');
+    if(!token) {
+      token = localStorage.getItem('access_token');
+    }
 
     if (token) {
       request = request.clone({
@@ -27,7 +31,12 @@ export class AuthInterceptorService implements HttpInterceptor {
           // Wenn der Status 401 ist, versuche einen neuen Access Token zu generieren
           return from(this.auth.generateAccesToken()).pipe(
             switchMap(() => {
-              const newToken = localStorage.getItem('access_token');
+
+              let newToken;
+              newToken = sessionStorage.getItem('access_token');
+              if(!newToken){
+                newToken = localStorage.getItem('access_token');
+              }
               if (newToken) {
                 // Klone die ursprüngliche Anfrage und setze den neuen Access Token
                 const clonedRequest = request.clone({

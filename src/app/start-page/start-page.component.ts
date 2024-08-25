@@ -22,10 +22,11 @@ export class StartPageComponent {
 
   constructor(public start: StartService, private as: AuthService) {}
 
+
   openSignUp(form: NgForm) {
     
     if(form.valid) {
-      this.as.removeTokenFromLocalStorage();
+      this.as.removeTokenFromStorage();
       this.start.dialogOpen = true;
   
       const dialogRef = this.dialog.open(DialogSignupComponent, { panelClass: ['dialog-bor-rad'], data: { email: form.value.email } }, );

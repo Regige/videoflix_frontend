@@ -16,19 +16,33 @@ export class AuthService {
     try {
         const url = environment.baseUrl + '/accounts/api/token/refresh/';
     
-        const token = localStorage.getItem('refresh_token');
-    
+        let token;
+
         const body = {
           "refresh": token
         }
-    
-        let resp: any = await lastValueFrom(this.http.post(url, body));
-        localStorage.removeItem('access_token');
-        localStorage.setItem('access_token',resp['access'] );
 
+        token = sessionStorage.getItem('refresh_token');
+
+        if(token) {
+          let resp: any = await lastValueFrom(this.http.post(url, body));
+
+          sessionStorage.setItem('access_token',resp['access'] );
+
+        } else if(!token) {
+          token = localStorage.getItem('refresh_token');
+
+          let resp: any = await lastValueFrom(this.http.post(url, body));
+
+          localStorage.setItem('access_token',resp['access'] );
+        }
     } catch(e) {
+        sessionStorage.removeItem('access_token');
+        sessionStorage.removeItem('refresh_token');
+
         localStorage.removeItem('access_token');
         localStorage.removeItem('refresh_token');
+
         this.router.navigateByUrl('/start-page');
     }
   }
@@ -56,19 +70,28 @@ export class AuthService {
 
 
   logoutUser() {
+    sessionStorage.removeItem('access_token');
+    sessionStorage.removeItem('refresh_token');
+
     localStorage.removeItem('access_token');
     localStorage.removeItem('refresh_token');
-    localStorage.removeItem('selected_video');
+
+    sessionStorage.removeItem('selected_video');
+
     this.router.navigateByUrl('/start-page');
 
     // evtl noch Blacklist im Backend ergänzen mit dem Code - dann mit try and catch!
   }
 
 
-  removeTokenFromLocalStorage() {
+  removeTokenFromStorage() {
+    sessionStorage.removeItem('access_token');
+    sessionStorage.removeItem('refresh_token');
+    
+    sessionStorage.removeItem('selected_video');
+
     localStorage.removeItem('access_token');
     localStorage.removeItem('refresh_token');
-    localStorage.removeItem('selected_video');
   }
 
 
