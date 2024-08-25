@@ -79,9 +79,22 @@ main {
             background-position: 20px 50%;
         }
 
+        @media (min-width: 1600px) {
+            height: 50vh;
+        }
+
+        @media (max-width: 1024px) {
+            height: auto;
+        }
+
+        @media (max-width: 962px) {
+            padding: 108px 56px 0px 56px;
+        }
+
         @media (max-width: 592px) {
             padding: 96px 16px;
         }
+
     }
 
     .selection-container {
@@ -151,12 +164,21 @@ main {
             }
         }
 
+        @media (max-width: 1024px) {
+            margin-top: 32px;
+        }
+
+        @media (max-width: 962px) {
+            padding: 0px 56px 96px 56px;
+        }
+
         @media (max-width: 592px) {
             gap: 32px;
             padding: 108px 0px 96px 16px;
             margin-top: 0;
             position: static;
         }
+
 
     }
 }

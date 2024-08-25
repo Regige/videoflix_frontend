@@ -17,7 +17,6 @@ import {VgBufferingModule} from '@videogular/ngx-videogular/buffering';
 })
 export class VideoPlayerComponent {
   
-  videoUrl: string = '';
   isFullscreen: boolean = false;
   isMuted: boolean = false;
   isMobile: boolean = false;
@@ -27,14 +26,11 @@ export class VideoPlayerComponent {
   
 
   async ngOnInit() {
-
-    // const speed = await this.speedS.measureSpeed();
-    // this.videoUrl = this.speedS.selectVideoUrl(speed, this.videoInstance); 
-    // Video Objekt = this.videoInstance
-
     this.checkScreenWidth();
 
     this.data.checkForSelVideo();
+
+    await this.selFile();
 
     setTimeout(() => {
       let header = document.getElementById('video-player-header');
@@ -92,5 +88,13 @@ export class VideoPlayerComponent {
     if(header) {
       header.classList.add('hidden');
     }
+  }
+
+
+  async selFile() {
+    const speed = await this.speedS.measureSpeed();
+    const videoUrl = this.speedS.selectVideoUrl(speed, this.data.selVideo); 
+    this.data.selVideo.video_file = videoUrl;
+    console.log('So sieht die file aus: ', videoUrl);
   }
 }

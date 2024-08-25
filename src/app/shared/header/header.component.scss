@@ -42,6 +42,9 @@ header {
         }
     }
 
+    @media (max-width: 962px) {
+        padding: 10px 56px;
+    }
 
     @media (max-width: 640px) {
         height: 80px;
