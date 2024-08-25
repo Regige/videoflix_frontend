@@ -58,6 +58,7 @@ export class AuthService {
   logoutUser() {
     localStorage.removeItem('access_token');
     localStorage.removeItem('refresh_token');
+    localStorage.removeItem('selected_video');
     this.router.navigateByUrl('/start-page');
 
     // evtl noch Blacklist im Backend ergänzen mit dem Code - dann mit try and catch!
@@ -67,6 +68,7 @@ export class AuthService {
   removeTokenFromLocalStorage() {
     localStorage.removeItem('access_token');
     localStorage.removeItem('refresh_token');
+    localStorage.removeItem('selected_video');
   }
 
 

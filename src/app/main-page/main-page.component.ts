@@ -40,6 +40,7 @@ export class MainPageComponent {
       console.log(e);
       this.error = 'Fehler beim Laden!';
     }
+    this.data.checkForSelVideo();
   }
 
 
@@ -60,6 +61,9 @@ export class MainPageComponent {
 
   selVideoElement(video: Video) {
     this.data.selVideo = video;
+
+    const videoJson = JSON.stringify(video);
+    localStorage.setItem('selected_video',videoJson);
 
     if(window.innerWidth <= 592) {
       this.router.navigateByUrl('/main-page-preview');
@@ -128,6 +132,9 @@ export class MainPageComponent {
       }
     });
   }
+
+
+  
   
 }
 

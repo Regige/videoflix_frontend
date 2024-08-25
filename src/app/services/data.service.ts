@@ -38,9 +38,15 @@ loadVideos() {
   }
 
 
+  checkForSelVideo() {
+    const videoJson = localStorage.getItem('selected_video');
 
+    if (videoJson) {
+      const savedVideo: Video = JSON.parse(videoJson);
 
-
+      this.selVideo = savedVideo;
+    }
+  }
 
 
 }

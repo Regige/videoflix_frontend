@@ -32,13 +32,16 @@ export class VideoPlayerComponent {
     // this.videoUrl = this.speedS.selectVideoUrl(speed, this.videoInstance); 
     // Video Objekt = this.videoInstance
 
+    this.checkScreenWidth();
+
+    this.data.checkForSelVideo();
+
     setTimeout(() => {
       let header = document.getElementById('video-player-header');
       if(header) {
         header.classList.add('hidden');
       }
     }, 4000);
-    this.checkScreenWidth();
   }
 
 

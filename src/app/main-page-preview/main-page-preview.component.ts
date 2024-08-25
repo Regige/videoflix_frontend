@@ -16,4 +16,8 @@ export class MainPagePreviewComponent {
 
   }
 
+  ngOnInit() {
+    this.data.checkForSelVideo();
+  }
+
 }
