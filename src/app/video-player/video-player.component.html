@@ -1,4 +1,8 @@
-<app-header></app-header>
+<app-header
+  id="video-player-header"
+  (mouseenter)="showHeader()"
+  (mouseleave)="hideHeader()"
+></app-header>
 <main class="flx">
   <vg-player>
     <vg-overlay-play></vg-overlay-play>
@@ -14,8 +18,9 @@
 
       <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
 
-      <vg-scrub-bar style="pointer-events: none"
-        ><span class="title">{{ data.selVideo.title }}</span></vg-scrub-bar
+      <vg-scrub-bar style="pointer-events: none">
+        @if(!isMobile) {<span class="title">{{ data.selVideo.title }}</span
+        >}</vg-scrub-bar
       >
 
       <!-- <vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display>

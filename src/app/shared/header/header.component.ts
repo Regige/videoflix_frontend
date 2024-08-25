@@ -5,6 +5,7 @@ import { DialogLoginComponent } from '../../dialogs/dialog-login/dialog-login.co
 import { Router, NavigationEnd, RouterModule } from '@angular/router';
 import { StartService } from '../../services/start.service';
 import { AuthService } from '../../services/auth.service';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-header',
@@ -19,7 +20,7 @@ export class HeaderComponent {
   isMobile = false;
 
 
-  constructor(private router: Router, public start: StartService, private auth: AuthService) {
+  constructor(private router: Router, public start: StartService, private auth: AuthService, public data: DataService) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.currentRoute = event.urlAfterRedirects;
@@ -36,8 +37,6 @@ export class HeaderComponent {
 
   checkScreenWidth(): void {
     this.isMobile = window.innerWidth < 640;
-    console.log("so sieht isMobile aus", this.isMobile);
-    
   }
 
 
@@ -67,6 +66,10 @@ export class HeaderComponent {
     if(window.innerWidth <= 592) {
       this.router.navigateByUrl('/main-page');
     }
+  }
+
+  backToPreview() {
+    this.router.navigateByUrl('/main-page-preview');
   }
 
 

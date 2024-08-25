@@ -2,12 +2,15 @@
   <!-- left -->
   @if(currentRoute === '/main-page' || isMobile) {
   <img src="assets/img/Symbol.svg" alt="Logo" (click)="loadMainPage()" />
-  } @else if(currentRoute === '/start-page' || currentRoute ===
+  @if(currentRoute === '/video-player' && isMobile) {
+  <span class="title">{{ data.selVideo.title }}</span>
+  } } @else if(currentRoute === '/start-page' || currentRoute ===
   '/privacy-police' || currentRoute === '/imprint' || isResetPasswordRoute()) {
   <img src="assets/img/Logo.svg" alt="Logo" />
   } @else if(currentRoute === '/video-player') {
   <div class="img-con">
     <img
+      class="back-icon"
       src="assets/img/icon/arrow_back.svg"
       alt="arrow icon"
       [routerLink]="['/main-page/']"
@@ -25,6 +28,7 @@
   {
   <div class="img-con">
     <img
+      class="back-icon"
       src="assets/img/icon/arrow_back.svg"
       alt="arrow icon"
       [routerLink]="['/start-page/']"
@@ -32,5 +36,14 @@
   </div>
   } @else if(currentRoute === '/video-player' && !isMobile) {
   <img src="assets/img/Symbol.svg" alt="Logo" />
+  } @else if(currentRoute === '/video-player' && isMobile) {
+  <div class="img-con">
+    <img
+      (click)="backToPreview()"
+      src="assets/img/icon/close_small.svg"
+      alt="Close icon"
+      class="close-icon"
+    />
+  </div>
   }
 </header>

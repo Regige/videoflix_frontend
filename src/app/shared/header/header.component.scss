@@ -27,16 +27,31 @@ header {
         align-items: center;
         justify-content: center;
 
-        img {
+        .back-icon {
             &:hover {
                 height: 51px;
                 width: 51px;
             }
         }
+        .close-icon {
+    
+            &:hover {
+                    height: 35px;
+                    width: 35px;
+                }
+        }
     }
 
+
     @media (max-width: 640px) {
-        height: auto;
+        height: 80px;
         padding: 10px 16px 10px 16px;
     }
+}
+
+
+.title {
+    @include font20(500);
+    color: white;
+    padding: 0px 8px;
 }

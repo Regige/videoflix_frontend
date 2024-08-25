@@ -20,6 +20,7 @@ export class VideoPlayerComponent {
   videoUrl: string = '';
   isFullscreen: boolean = false;
   isMuted: boolean = false;
+  isMobile: boolean = false;
   
 
   constructor(private speedS: SpeedService, public data: DataService) {}
@@ -30,6 +31,14 @@ export class VideoPlayerComponent {
     // const speed = await this.speedS.measureSpeed();
     // this.videoUrl = this.speedS.selectVideoUrl(speed, this.videoInstance); 
     // Video Objekt = this.videoInstance
+
+    setTimeout(() => {
+      let header = document.getElementById('video-player-header');
+      if(header) {
+        header.classList.add('hidden');
+      }
+    }, 4000);
+    this.checkScreenWidth();
   }
 
 
@@ -63,5 +72,22 @@ export class VideoPlayerComponent {
     }
   }
 
+  checkScreenWidth(): void {
+    this.isMobile = window.innerWidth < 640;
+  }
 
+
+  showHeader() {
+    let header = document.getElementById('video-player-header');
+    if(header) {
+      header.classList.remove('hidden');
+    }
+  }
+
+  hideHeader() {
+    let header = document.getElementById('video-player-header');
+    if(header) {
+      header.classList.add('hidden');
+    }
+  }
 }
