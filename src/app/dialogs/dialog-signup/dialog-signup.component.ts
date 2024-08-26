@@ -24,6 +24,8 @@ export class DialogSignupComponent {
   password1: string = '';
   password2: string = '';
   signUpError: boolean = false;
+  formSubmitted: boolean = false;
+  hideForm: boolean = false;
 
 
   constructor(private as: AuthService, public dialogRefLogin: MatDialogRef<DialogSignupComponent>, @Inject(MAT_DIALOG_DATA) public data: { email: string }, private router: Router) {}
@@ -43,18 +45,24 @@ export class DialogSignupComponent {
         }
 
         let resp: any = await this.as.registerWithEmailAndPassword(this.email, this.password1);
-        console.log(resp);
+
+        this.hideForm = true;
+        this.formSubmitted = true;
 
         localStorage.setItem('access_token', resp['access_token']);
         localStorage.setItem('refresh_token', resp['user_data']['tokens']['refresh']);
-        this.dialogRefLogin.close();
+
+        setTimeout(() => {
+          this.dialogRefLogin.close();
+          }, 10000);
 
       } catch(e) {
         console.error('An error occurred during registration.');
+        this.hideForm = true;
         this.signUpError = true;
         setTimeout(() => {
           window.location.reload();
-        }, 5000);
+        }, 10000);
       }
     }
   }
