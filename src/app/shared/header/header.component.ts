@@ -31,6 +31,8 @@ export class HeaderComponent {
 
   ngOnInit(): void {
     this.currentRoute = this.router.url;
+    console.log(this.currentRoute);
+    
 
     this.checkScreenWidth();
   }

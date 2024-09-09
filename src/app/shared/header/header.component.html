@@ -4,8 +4,8 @@
   <img src="assets/img/Symbol.svg" alt="Logo" (click)="loadMainPage()" />
   @if(currentRoute === '/video-player' && isMobile) {
   <span class="title">{{ data.selVideo.title }}</span>
-  } } @else if(currentRoute === '/start-page' || currentRoute ===
-  '/privacy-police' || currentRoute === '/imprint' || isResetPasswordRoute()) {
+  } } @else if(currentRoute === '/' || currentRoute === '/privacy-police' ||
+  currentRoute === '/imprint' || isResetPasswordRoute()) {
   <img src="assets/img/Logo.svg" alt="Logo" />
   } @else if(currentRoute === '/video-player') {
   <div class="img-con">
@@ -19,7 +19,7 @@
   }
 
   <!-- right -->
-  @if(currentRoute === '/start-page' || isResetPasswordRoute()) {
+  @if(currentRoute === '/' || isResetPasswordRoute()) {
   <button (click)="openDialog()">Log in</button>
   } @else if(currentRoute === '/main-page' || currentRoute ===
   '/main-page-preview') {
@@ -31,7 +31,7 @@
       class="back-icon"
       src="assets/img/icon/arrow_back.svg"
       alt="arrow icon"
-      [routerLink]="['/start-page/']"
+      [routerLink]="['']"
     />
   </div>
   } @else if(currentRoute === '/video-player' && !isMobile) {

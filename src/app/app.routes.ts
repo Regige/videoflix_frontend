@@ -8,8 +8,9 @@ import { PasswordResetComponent } from './password-reset/password-reset.componen
 import { MainPagePreviewComponent } from './main-page-preview/main-page-preview.component';
 
 export const routes: Routes = [
-    { path: '', redirectTo: 'start-page', pathMatch: 'full'},
-    { path: 'start-page', component: StartPageComponent},
+    // { path: '', redirectTo: 'start-page', pathMatch: 'full'},
+    // { path: 'start-page', component: StartPageComponent},
+    { path: '', component: StartPageComponent},
     { path: 'main-page', component: MainPageComponent},
     { path: 'main-page-preview', component: MainPagePreviewComponent},
     { path: 'imprint', component: ImprintComponent},
