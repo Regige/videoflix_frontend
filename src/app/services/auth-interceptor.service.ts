@@ -46,7 +46,7 @@ export class AuthInterceptorService implements HttpInterceptor {
                 return next.handle(clonedRequest);
               } else {
                 // Wenn kein neuer Token generiert werden konnte, leite auf die Startseite um
-                this.router.navigateByUrl('/start-page');
+                this.router.navigateByUrl('');
                 return throwError(() => new Error('Token refresh failed'));
               }
             })

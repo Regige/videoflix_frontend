@@ -43,7 +43,7 @@ export class MainPageComponent {
 
       console.log(e);
       this.error = 'Fehler beim Laden!';
-      this.router.navigateByUrl('/start-page');
+      this.router.navigateByUrl('');
     }
   }
 

@@ -78,7 +78,7 @@ export class AuthService {
 
     sessionStorage.removeItem('selected_video');
 
-    this.router.navigateByUrl('/start-page');
+    this.router.navigateByUrl('');
 
     // evtl noch Blacklist im Backend ergänzen mit dem Code - dann mit try and catch!
   }
