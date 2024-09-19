@@ -7,6 +7,7 @@ import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@a
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideClientHydration } from '@angular/platform-browser';
 
 
 export const appConfig: ApplicationConfig = {
@@ -15,6 +16,6 @@ export const appConfig: ApplicationConfig = {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
       multi: true
-    }, provideAnimationsAsync(), provideAnimationsAsync()
+    }, provideAnimationsAsync(), provideAnimationsAsync(), provideClientHydration()
   ]
 };
