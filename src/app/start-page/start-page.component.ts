@@ -7,11 +7,12 @@ import { DialogSignupComponent } from '../dialogs/dialog-signup/dialog-signup.co
 import { StartService } from '../services/start.service';
 import { FormsModule, NgForm } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
+import { SpinnerComponent } from '../shared/spinner/spinner.component';
 
 @Component({
   selector: 'app-start-page',
   standalone: true,
-  imports: [ MatDialogModule, HeaderComponent, FooterComponent, FormsModule ],
+  imports: [ MatDialogModule, HeaderComponent, FooterComponent, FormsModule, SpinnerComponent ],
   templateUrl: './start-page.component.html',
   styleUrl: './start-page.component.scss'
 })

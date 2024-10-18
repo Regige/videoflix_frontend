@@ -1,7 +1,12 @@
 <header>
   <!-- left -->
   @if(currentRoute === '/main-page' || isMobile) {
-  <img src="assets/img/Symbol.svg" alt="Logo" (click)="loadMainPage()" />
+  <img
+    #logoElement
+    src="assets/img/Symbol.svg"
+    alt="Logo"
+    (click)="loadMainPage()"
+  />
   @if(currentRoute === '/video-player' && isMobile) {
   <span class="title">{{ data.selVideo.title }}</span>
   } } @else if(currentRoute === '/' || currentRoute === '/privacy-police' ||

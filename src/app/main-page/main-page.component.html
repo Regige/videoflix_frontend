@@ -1,6 +1,7 @@
-<app-header></app-header>
+<app-header #headerLogo></app-header>
 
-<main>
+@if(animationLoaded) {
+<main [ngClass]="{ loaded: animationLoaded }">
   @if(isDesktopScreen) {
   <img class="preview-img" [src]="data.selVideo.thumbnail_bg" alt="" />
   <div class="preview-bg"></div>
@@ -81,3 +82,4 @@
     }
   </div>
 </main>
+}

@@ -1,14 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { HeaderComponent } from '../shared/header/header.component';
 import { DataService } from '../services/data.service';
 import { Video } from '../interfaces/video';
 import { environment } from '../../environments/environment.development';
 import { Router, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { log } from 'console';
 
 @Component({
   selector: 'app-main-page',
   standalone: true,
-  imports: [HeaderComponent, RouterModule],
+  imports: [HeaderComponent, RouterModule, CommonModule],
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.scss'
 })
@@ -19,6 +21,9 @@ export class MainPageComponent {
   romanceVideos: Video[] = [];
   documentaryVideos: Video[] = [];
   isDesktopScreen: boolean = true;
+  animationLoaded: boolean = false;
+
+  @ViewChild(HeaderComponent) headerComponent!: HeaderComponent;
 
 
   constructor(public data: DataService, private router: Router) {}
@@ -138,6 +143,26 @@ export class MainPageComponent {
   }
 
 
+  ngAfterViewInit(): void {
+    // Zugriff auf das img-Tag in der AppHeader-Komponente
+    const logo = this.headerComponent.logoElement.nativeElement;
+    // console.log("So sieht ViewChild aus:", logo);
+    
+
+    // Beispiel: Starten einer Animation auf dem Bild
+    if (logo) {
+      logo.classList.add('logo-animation'); // Fügt die Animationsklasse hinzu
+    }
+
+    // Setze das animationLoaded nach einer Verzögerung auf true
+    setTimeout(() => {
+      this.animationLoaded = true;
+      if (logo) {
+        logo.classList.remove('logo-animation');
+        logo.classList.add('logo-final');
+      }
+    }, 4000); // 2 Sekunden warten, dann Animation beenden
+  }
   
   
 }

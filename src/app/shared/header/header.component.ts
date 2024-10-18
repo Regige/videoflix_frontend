@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ViewChild, ElementRef } from '@angular/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogLoginComponent } from '../../dialogs/dialog-login/dialog-login.component';
@@ -18,6 +18,8 @@ export class HeaderComponent {
   readonly dialog = inject(MatDialog);
   currentRoute: string = '';
   isMobile = false;
+
+  @ViewChild('logoElement', { static: false }) logoElement!: ElementRef;
 
 
   constructor(private router: Router, public start: StartService, private auth: AuthService, public data: DataService) {

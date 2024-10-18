@@ -112,7 +112,7 @@ main {
         flex-direction: column;
         align-items: start;
         gap: 48px;
-        margin-top: -40px;
+        // margin-top: -40px;
         padding: 0px 96px 96px 96px;
         position: relative;
 
@@ -191,4 +191,41 @@ main {
 
 
     }
+}
+
+
+// Animation Style
+
+/* Grundzustand des Logos */
+
+#logoElement {
+    height: 48px;
+    width: 48px;
+}
+.logo-animation {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(4);
+    /* Das Logo ist größer und in der Mitte */
+    transition: transform 1.5s ease-in-out, top 1.5s ease-in-out, left 1.5s ease-in-out;
+}
+
+.logo-final {
+    position: absolute;
+    top: 20px;
+    /* Endposition im Header */
+    left: 20px;
+    transform: translate(0, 0) scale(1);
+    /* Normale Größe */
+}
+
+/* Der Hauptinhalt ist versteckt, solange die Animation läuft */
+main {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+main.loaded {
+    opacity: 1;
 }
