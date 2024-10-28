@@ -1,6 +1,14 @@
 <div class="dialog-container">
   <h2>Log in</h2>
-  <form #loginForm="ngForm" (ngSubmit)="login(loginForm)" class="pos-rel">
+  @if(loadingLogin === true) {
+  <app-spinner></app-spinner>
+  }
+  <form
+    #loginForm="ngForm"
+    (ngSubmit)="login(loginForm)"
+    class="pos-rel"
+    [class.vis-hidden]="loadingLogin === true"
+  >
     @if(loginError) {
     <span class="invalid-text login-error">Email or password is wrong.</span>
     }
@@ -54,9 +62,14 @@
     />
   </form>
 
-  <button (click)="openDialog('forgotPassword')">Forgot password?</button>
+  <button
+    (click)="openDialog('forgotPassword')"
+    [class.vis-hidden]="loadingLogin === true"
+  >
+    Forgot password?
+  </button>
 
-  <div class="signup-con">
+  <div class="signup-con" [class.vis-hidden]="loadingLogin === true">
     <span>New to Videoflix?</span>
     <button (click)="openDialog('signUp')">Sign Up now</button>
   </div>

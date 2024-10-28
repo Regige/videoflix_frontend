@@ -1,6 +1,13 @@
 <app-header #headerLogo></app-header>
 
-@if(animationLoaded) {
+@if(animationLoaded === false) {
+<div class="loading-img"></div>
+} @else { @if(errorData === true) {
+<div class="error-msg">
+  <h2>Fehler beim Laden!</h2>
+  <h3>Sie werden zur Startseite weiter geleitet.</h3>
+</div>
+} @else {
 <main [ngClass]="{ loaded: animationLoaded }">
   @if(isDesktopScreen) {
   <img class="preview-img" [src]="data.selVideo.thumbnail_bg" alt="" />
@@ -82,4 +89,4 @@
     }
   </div>
 </main>
-}
+} }

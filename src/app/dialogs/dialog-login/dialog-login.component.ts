@@ -13,11 +13,12 @@ import { DialogForgotPasswordComponent } from '../dialog-forgot-password/dialog-
 import { StartService } from '../../services/start.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { SpinnerComponent } from '../../shared/spinner/spinner.component';
 
 @Component({
   selector: 'app-dialog-login',
   standalone: true,
-  imports: [ MatButtonModule, MatDialogActions, MatDialogContent, MatDialogClose, MatDialogTitle, FormsModule, MatDialogModule],
+  imports: [ MatButtonModule, MatDialogActions, MatDialogContent, MatDialogClose, MatDialogTitle, FormsModule, MatDialogModule, SpinnerComponent],
   templateUrl: './dialog-login.component.html',
   styleUrl: './dialog-login.component.scss'
 })
@@ -27,6 +28,7 @@ export class DialogLoginComponent {
   password: string = '';
   remember: boolean = false;
   loginError = false;
+  loadingLogin = false;
 
 
   readonly dialog = inject(MatDialog);
@@ -37,6 +39,7 @@ export class DialogLoginComponent {
   async login(form: NgForm) {
     if(form.valid) {
       try {
+        this.loadingLogin = true;
         this.email = this.email.toLowerCase();
 
         let resp: any = await this.as.loginWithEmailAndPassword(this.email, this.password);
@@ -60,7 +63,8 @@ export class DialogLoginComponent {
         this.router.navigateByUrl('/main-page');
 
       } catch(e) {
-        console.error(e);
+        console.error("Login ist fehlgeschlagen");
+        this.loadingLogin = false;
         this.loginError = true;
       }
     }

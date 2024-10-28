@@ -13,14 +13,23 @@ export class DataService {
 
   videos:any = [];
   selVideo: Video = {
+        // id: -1,
+        // title: 'Breakout',
+        // description: this.lorem_ipsum,
+        // created_at: '',
+        // category: '',
+        // is_new: true,
+        // thumbnail: 'assets/img/wale.jpeg',
+        // thumbnail_bg: 'assets/img/wale.jpeg',
+        // video_file: ''
         id: -1,
-        title: 'Breakout',
-        description: this.lorem_ipsum,
+        title: '',
+        description: '',
         created_at: '',
         category: '',
         is_new: true,
-        thumbnail: 'assets/img/wale.jpeg',
-        thumbnail_bg: 'assets/img/wale.jpeg',
+        thumbnail: '',
+        thumbnail_bg: '',
         video_file: ''
   };
 

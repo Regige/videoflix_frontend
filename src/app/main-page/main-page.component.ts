@@ -16,7 +16,7 @@ import { log } from 'console';
 })
 export class MainPageComponent {
 
-  error = '';
+  errorData = false;
   dramaVideos: Video[] = [];
   romanceVideos: Video[] = [];
   documentaryVideos: Video[] = [];
@@ -43,12 +43,17 @@ export class MainPageComponent {
       if(this.data.selVideo.id === -1) {
         this.data.selVideo = this.data.videos.find((video: Video) => video.is_new === true) || this.data.videos[0];
       }
+      this.animationLoaded = true;
 
     } catch(e) {
-
       console.log(e);
-      this.error = 'Fehler beim Laden!';
-      this.router.navigateByUrl('');
+      this.errorData = true;
+      this.animationLoaded = true;
+
+      setTimeout(() => {
+        this.router.navigateByUrl('');
+      }, 4000);
+
     }
   }
 
@@ -143,26 +148,26 @@ export class MainPageComponent {
   }
 
 
-  ngAfterViewInit(): void {
-    // Zugriff auf das img-Tag in der AppHeader-Komponente
-    const logo = this.headerComponent.logoElement.nativeElement;
-    // console.log("So sieht ViewChild aus:", logo);
+  // ngAfterViewInit(): void {
+  //   // Zugriff auf das img-Tag in der AppHeader-Komponente
+  //   const logo = this.headerComponent.logoElement.nativeElement;
+  //   // console.log("So sieht ViewChild aus:", logo);
     
 
-    // Beispiel: Starten einer Animation auf dem Bild
-    if (logo) {
-      logo.classList.add('logo-animation'); // Fügt die Animationsklasse hinzu
-    }
+  //   // Beispiel: Starten einer Animation auf dem Bild
+  //   if (logo) {
+  //     logo.classList.add('logo-animation'); // Fügt die Animationsklasse hinzu
+  //   }
 
-    // Setze das animationLoaded nach einer Verzögerung auf true
-    setTimeout(() => {
-      this.animationLoaded = true;
-      if (logo) {
-        logo.classList.remove('logo-animation');
-        logo.classList.add('logo-final');
-      }
-    }, 4000); // 2 Sekunden warten, dann Animation beenden
-  }
+  //   // Setze das animationLoaded nach einer Verzögerung auf true
+  //   setTimeout(() => {
+  //     this.animationLoaded = true;
+  //     if (logo) {
+  //       logo.classList.remove('logo-animation');
+  //       logo.classList.add('logo-final');
+  //     }
+  //   }, 4000); // 2 Sekunden warten, dann Animation beenden
+  // }
   
   
 }
