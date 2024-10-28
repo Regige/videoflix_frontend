@@ -28,12 +28,14 @@ header {
         justify-content: center;
 
         .back-icon {
+            cursor: pointer;
             &:hover {
                 height: 51px;
                 width: 51px;
             }
         }
         .close-icon {
+            cursor: pointer;
     
             &:hover {
                     height: 35px;
@@ -50,6 +52,10 @@ header {
         height: 80px;
         padding: 10px 16px 10px 16px;
     }
+}
+
+img { 
+    cursor: pointer;
 }
 
 

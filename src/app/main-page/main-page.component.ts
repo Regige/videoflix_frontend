@@ -21,7 +21,7 @@ export class MainPageComponent {
   romanceVideos: Video[] = [];
   documentaryVideos: Video[] = [];
   isDesktopScreen: boolean = true;
-  animationLoaded: boolean = false;
+  loadData: boolean = false;
 
   @ViewChild(HeaderComponent) headerComponent!: HeaderComponent;
 
@@ -43,12 +43,12 @@ export class MainPageComponent {
       if(this.data.selVideo.id === -1) {
         this.data.selVideo = this.data.videos.find((video: Video) => video.is_new === true) || this.data.videos[0];
       }
-      this.animationLoaded = true;
+      this.loadData = true;
 
     } catch(e) {
       console.log(e);
       this.errorData = true;
-      this.animationLoaded = true;
+      this.loadData = true;
 
       setTimeout(() => {
         this.router.navigateByUrl('');

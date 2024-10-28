@@ -158,6 +158,7 @@ main {
                     
                     img {
                         // height: 120px;
+                        cursor: pointer;
                         width: 214px;
                         object-fit: cover;
                         scroll-snap-align: start;
@@ -211,34 +212,37 @@ main {
 
 /* Grundzustand des Logos */
 
-#logoElement {
-    height: 48px;
-    width: 48px;
-}
-.logo-animation {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(4);
-    /* Das Logo ist größer und in der Mitte */
-    transition: transform 1.5s ease-in-out, top 1.5s ease-in-out, left 1.5s ease-in-out;
-}
+// #logoElement {
+//     height: 48px;
+//     width: 48px;
+// }
+// .logo-animation {
+//     position: absolute;
+//     top: 50%;
+//     left: 50%;
+//     transform: translate(-50%, -50%) scale(4);
+//     /* Das Logo ist größer und in der Mitte */
+//     transition: transform 1.5s ease-in-out, top 1.5s ease-in-out, left 1.5s ease-in-out;
+// }
 
-.logo-final {
-    position: absolute;
-    top: 20px;
-    /* Endposition im Header */
-    left: 20px;
-    transform: translate(0, 0) scale(1);
-    /* Normale Größe */
-}
+// .logo-final {
+//     position: absolute;
+//     top: 20px;
+//     /* Endposition im Header */
+//     left: 20px;
+//     transform: translate(0, 0) scale(1);
+//     /* Normale Größe */
+// }
 
 /* Der Hauptinhalt ist versteckt, solange die Animation läuft */
-main {
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-}
+// main {
+//     // opacity: 0;
+//     transition: opacity 3s ease-in-out;
+// }
 
-main.loaded {
-    opacity: 1;
-}
+// .loaded {
+//     // opacity: 1;
+// }
+
+
+// [ngClass]="{ loaded: loadData === true }"
