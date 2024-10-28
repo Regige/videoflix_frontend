@@ -1,6 +1,7 @@
 <app-header #headerLogo></app-header>
 
 @if(loadData === false) {
+<app-spinner></app-spinner>
 <div class="loading-img"></div>
 } @else { @if(errorData === true) {
 <div class="error-msg">

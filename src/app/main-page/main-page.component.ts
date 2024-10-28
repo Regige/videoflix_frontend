@@ -6,11 +6,12 @@ import { environment } from '../../environments/environment.development';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { log } from 'console';
+import { SpinnerComponent } from "../shared/spinner/spinner.component";
 
 @Component({
   selector: 'app-main-page',
   standalone: true,
-  imports: [HeaderComponent, RouterModule, CommonModule],
+  imports: [HeaderComponent, RouterModule, CommonModule, SpinnerComponent],
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.scss'
 })
