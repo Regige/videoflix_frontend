@@ -29,6 +29,7 @@ export class DialogLoginComponent {
   remember: boolean = false;
   loginError = false;
   loadingLogin = false;
+  savedInLocalStorage = false;
 
 
   readonly dialog = inject(MatDialog);
@@ -36,18 +37,36 @@ export class DialogLoginComponent {
 
   constructor(public start: StartService, public dialogRefLogin: MatDialogRef<DialogLoginComponent>, private as: AuthService, private router: Router) {}
 
+  ngOnInit() {
+    console.log('Vor dem Lesen aus localStorage:');
+    console.log('Email:', localStorage.getItem('email'));
+    console.log('Access Token:', localStorage.getItem('access_token'));
+    console.log('Refresh Token:', localStorage.getItem('refresh_token'));
+
+    const savedEmail = localStorage.getItem('email');
+    const accessToken = localStorage.getItem('access_token');
+    const refreshToken = localStorage.getItem('refresh_token');
+
+    if (savedEmail && accessToken && refreshToken) {
+      this.email = savedEmail; 
+      this.password = '********'; 
+      this.remember = true; 
+      this.savedInLocalStorage = true;
+    }
+  }
+
+
+
   async login(form: NgForm) {
-    if(form.valid) {
+    if(form.valid && !this.savedInLocalStorage) {
       try {
         this.loadingLogin = true;
         this.email = this.email.toLowerCase();
 
         let resp: any = await this.as.loginWithEmailAndPassword(this.email, this.password);
-        console.log(resp);
-
-        console.log("so sieht remember aus:", this.remember);
 
       if (this.remember) {
+        localStorage.setItem('email', this.email);
         localStorage.setItem('access_token', resp['access']);
         localStorage.setItem('refresh_token', resp['refresh']);
       } else {
@@ -55,11 +74,7 @@ export class DialogLoginComponent {
         sessionStorage.setItem('refresh_token', resp['refresh']);
       }
 
-        // localStorage.setItem('access_token', resp['access']);
-        // localStorage.setItem('refresh_token', resp['refresh']);
-
         this.dialogRefLogin.close();
-        
         this.router.navigateByUrl('/main-page');
 
       } catch(e) {
@@ -67,6 +82,9 @@ export class DialogLoginComponent {
         this.loadingLogin = false;
         this.loginError = true;
       }
+    } else if(form.valid && this.savedInLocalStorage) {
+        this.dialogRefLogin.close();
+        this.router.navigateByUrl('/main-page');
     }
   }
 
@@ -93,6 +111,20 @@ export class DialogLoginComponent {
       }
     });
   }
+
+
+  onRememberChange(event: Event) {
+    const checkbox = event.target as HTMLInputElement;
+    
+    if (!checkbox.checked) {
+      this.as.removeTokenFromlocalStorage();
+
+      this.email = '';
+      this.password = '';
+      this.savedInLocalStorage = false;
+      this.remember = false;
+    }
+}
 
 
 }

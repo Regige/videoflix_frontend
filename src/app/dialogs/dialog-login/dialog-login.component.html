@@ -51,6 +51,7 @@
           name="remember"
           [(ngModel)]="remember"
           id="remember-checkbox"
+          (change)="onRememberChange($event)"
         />
         Remember me</label
       >

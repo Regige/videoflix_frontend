@@ -73,9 +73,6 @@ export class AuthService {
     sessionStorage.removeItem('access_token');
     sessionStorage.removeItem('refresh_token');
 
-    localStorage.removeItem('access_token');
-    localStorage.removeItem('refresh_token');
-
     sessionStorage.removeItem('selected_video');
 
     this.router.navigateByUrl('');
@@ -89,7 +86,11 @@ export class AuthService {
     sessionStorage.removeItem('refresh_token');
     
     sessionStorage.removeItem('selected_video');
+  }
 
+
+  removeTokenFromlocalStorage() {
+    localStorage.removeItem('email');
     localStorage.removeItem('access_token');
     localStorage.removeItem('refresh_token');
   }
