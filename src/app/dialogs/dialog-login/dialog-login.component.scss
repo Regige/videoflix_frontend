@@ -11,6 +11,12 @@
         margin-bottom: 16px;
     }
 
+    h3 {
+        @include font24(500);
+        margin-top: 32px;
+        color: #2E3EDF;
+    }
+
     form {
 
         input[type="email"], input[type="password"] {
