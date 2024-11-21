@@ -95,6 +95,6 @@ export class VideoPlayerComponent {
     const speed = await this.speedS.measureSpeed();
     const videoUrl = this.speedS.selectVideoUrl(speed, this.data.selVideo); 
     this.data.selVideo.video_file = videoUrl;
-    console.log('So sieht die file aus: ', videoUrl);
+    // console.log('So sieht die file aus: ', videoUrl);
   }
 }

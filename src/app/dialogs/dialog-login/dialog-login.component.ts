@@ -38,10 +38,10 @@ export class DialogLoginComponent {
   constructor(public start: StartService, public dialogRefLogin: MatDialogRef<DialogLoginComponent>, private as: AuthService, private router: Router) {}
 
   ngOnInit() {
-    console.log('Vor dem Lesen aus localStorage:');
-    console.log('Email:', localStorage.getItem('email'));
-    console.log('Access Token:', localStorage.getItem('access_token'));
-    console.log('Refresh Token:', localStorage.getItem('refresh_token'));
+    // console.log('Vor dem Lesen aus localStorage:');
+    // console.log('Email:', localStorage.getItem('email'));
+    // console.log('Access Token:', localStorage.getItem('access_token'));
+    // console.log('Refresh Token:', localStorage.getItem('refresh_token'));
 
     const savedEmail = localStorage.getItem('email');
     const accessToken = localStorage.getItem('access_token');

@@ -40,7 +40,7 @@ export class PasswordResetComponent {
         try {
           this.loadingReset = true;
           let resp: any = await this.as.resetUserPassword(this.password1, this.token);
-          console.log(resp);
+          // console.log(resp);
 
           this.resetWorked = true;
           setTimeout(() => {

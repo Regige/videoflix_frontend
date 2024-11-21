@@ -27,7 +27,7 @@ export class DialogForgotPasswordComponent {
       try {
         this.loadingForgotten = true;
         let resp: any = await this.as.getResetPasswordLink(this.email);
-        console.log(resp);
+        // console.log(resp);
         this.emailSubmitted = true;
 
       } catch(e) {
@@ -40,5 +40,5 @@ export class DialogForgotPasswordComponent {
       }
     }
   }
-  
+
 }

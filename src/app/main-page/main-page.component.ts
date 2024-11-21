@@ -5,7 +5,6 @@ import { Video } from '../interfaces/video';
 import { environment } from '../../environments/environment.development';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { log } from 'console';
 import { SpinnerComponent } from "../shared/spinner/spinner.component";
 
 @Component({
@@ -38,7 +37,7 @@ export class MainPageComponent {
       this.data.videos = this.mapVideos(rawVideos);
       this.sortVideos();
 
-      console.log(this.data.videos);
+      // console.log(this.data.videos);
 
       this.data.checkForSelVideo();
       if(this.data.selVideo.id === -1) {
@@ -47,7 +46,7 @@ export class MainPageComponent {
       this.loadData = true;
 
     } catch(e) {
-      console.log(e);
+      // console.log(e);
       this.errorData = true;
       this.loadData = true;
 
@@ -147,28 +146,6 @@ export class MainPageComponent {
       }
     });
   }
-
-
-  // ngAfterViewInit(): void {
-  //   // Zugriff auf das img-Tag in der AppHeader-Komponente
-  //   const logo = this.headerComponent.logoElement.nativeElement;
-  //   // console.log("So sieht ViewChild aus:", logo);
-    
-
-  //   // Beispiel: Starten einer Animation auf dem Bild
-  //   if (logo) {
-  //     logo.classList.add('logo-animation'); // Fügt die Animationsklasse hinzu
-  //   }
-
-  //   // Setze das animationLoaded nach einer Verzögerung auf true
-  //   setTimeout(() => {
-  //     this.animationLoaded = true;
-  //     if (logo) {
-  //       logo.classList.remove('logo-animation');
-  //       logo.classList.add('logo-final');
-  //     }
-  //   }, 4000); // 2 Sekunden warten, dann Animation beenden
-  // }
   
   
 }
