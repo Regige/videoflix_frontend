@@ -255,6 +255,16 @@ main {
     visibility: hidden;
 }
 
+.loading-hint {
+    @include font24(500);
+    margin-top: 32px;
+    color: #2E3EDF;
+    position: absolute;
+    left: 50%;
+    top: 25%;
+    transform: translate(-50%, -50%);
+}
+
 
 
 // scrollbar

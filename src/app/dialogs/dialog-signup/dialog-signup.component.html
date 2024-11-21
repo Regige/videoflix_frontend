@@ -1,8 +1,15 @@
 <div class="dialog-container">
   <h2>Sign Up</h2>
 
-  @if(hideForm === false) {
-  <form #signUpForm="ngForm" (ngSubmit)="register(signUpForm)">
+  @if(hideForm === false) { @if(loadingSignup === true) {
+  <app-spinner></app-spinner>
+  <h3 class="loading-hint">Einen Moment bitte</h3>
+  }
+  <form
+    #signUpForm="ngForm"
+    (ngSubmit)="register(signUpForm)"
+    [class.vis-hidden]="loadingSignup === true"
+  >
     <label for="email-address" class="pos-rel">
       <input
         #emailInput="ngModel"

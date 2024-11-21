@@ -3,18 +3,13 @@
 
 .dialog-container {
     @include dialogCon();
+    position: relative;
 
     h2 {
         @include font48(700);
         color: #2E3EDF;
         margin: 0;
         margin-bottom: 16px;
-    }
-
-    h3 {
-        @include font24(500);
-        margin-top: 32px;
-        color: #2E3EDF;
     }
 
     form {

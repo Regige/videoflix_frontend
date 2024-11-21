@@ -65,14 +65,14 @@ export class DialogLoginComponent {
 
         let resp: any = await this.as.loginWithEmailAndPassword(this.email, this.password);
 
-      if (this.remember) {
-        localStorage.setItem('email', this.email);
-        localStorage.setItem('access_token', resp['access']);
-        localStorage.setItem('refresh_token', resp['refresh']);
-      } else {
-        sessionStorage.setItem('access_token', resp['access']);
-        sessionStorage.setItem('refresh_token', resp['refresh']);
-      }
+        if (this.remember) {
+          localStorage.setItem('email', this.email);
+          localStorage.setItem('access_token', resp['access']);
+          localStorage.setItem('refresh_token', resp['refresh']);
+        } else {
+          sessionStorage.setItem('access_token', resp['access']);
+          sessionStorage.setItem('refresh_token', resp['refresh']);
+        }
 
         this.dialogRefLogin.close();
         this.router.navigateByUrl('/main-page');

@@ -10,11 +10,12 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { SpinnerComponent } from '../../shared/spinner/spinner.component';
 
 @Component({
   selector: 'app-dialog-signup',
   standalone: true,
-  imports: [ MatButtonModule, MatDialogActions, MatDialogContent, MatDialogClose, MatDialogTitle, FormsModule],
+  imports: [ MatButtonModule, MatDialogActions, MatDialogContent, MatDialogClose, MatDialogTitle, FormsModule, SpinnerComponent],
   templateUrl: './dialog-signup.component.html',
   styleUrl: './dialog-signup.component.scss'
 })
@@ -26,6 +27,7 @@ export class DialogSignupComponent {
   signUpError: boolean = false;
   formSubmitted: boolean = false;
   hideForm: boolean = false;
+  loadingSignup = false;
 
 
   constructor(private as: AuthService, public dialogRefLogin: MatDialogRef<DialogSignupComponent>, @Inject(MAT_DIALOG_DATA) public data: { email: string }, private router: Router) {}
@@ -39,6 +41,7 @@ export class DialogSignupComponent {
   async register(form: NgForm) {
     if(form.valid) {
       try {
+        this.loadingSignup = true;
         this.email = this.email.toLowerCase();
         if (this.password1 !== this.password2) {
           return;
@@ -60,6 +63,7 @@ export class DialogSignupComponent {
         console.error('An error occurred during registration.');
         this.hideForm = true;
         this.signUpError = true;
+        this.loadingSignup = false;
         setTimeout(() => {
           window.location.reload();
         }, 10000);

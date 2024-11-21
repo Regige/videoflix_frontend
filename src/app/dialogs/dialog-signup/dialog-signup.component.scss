@@ -2,6 +2,7 @@
 
 .dialog-container {
     @include dialogCon();
+    position: relative;
 
     h2 {
         @include font48(700);
