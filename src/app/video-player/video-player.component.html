@@ -28,8 +28,16 @@
       <!-- 
       <vg-track-selector></vg-track-selector> -->
       <vg-playback-button></vg-playback-button>
-      <vg-mute id="vg-mute" (click)="toggleSound()"></vg-mute>
       <!-- <vg-volume></vg-volume> -->
+
+      <div class="menu_quality" [matMenuTriggerFor]="menu"></div>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="changeQuality('1080p')">1080p</button>
+        <button mat-menu-item (click)="changeQuality('720p')">720p</button>
+        <button mat-menu-item (click)="changeQuality('480p')">480p</button>
+      </mat-menu>
+
+      <vg-mute id="vg-mute" (click)="toggleSound()"></vg-mute>
 
       <vg-fullscreen
         (click)="toggleScreen()"

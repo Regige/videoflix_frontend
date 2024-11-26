@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { SpeedService } from '../services/speed.service';
 import { DataService } from '../services/data.service';
 import { HeaderComponent } from '../shared/header/header.component';
@@ -8,10 +8,13 @@ import {VgControlsModule} from '@videogular/ngx-videogular/controls';
 import {VgOverlayPlayModule} from '@videogular/ngx-videogular/overlay-play';
 import {VgBufferingModule} from '@videogular/ngx-videogular/buffering';
 
+import {MatMenuModule} from '@angular/material/menu';
+import { log } from 'console';
+
 @Component({
   selector: 'app-video-player',
   standalone: true,
-  imports: [HeaderComponent, VgCoreModule, VgControlsModule, VgOverlayPlayModule, VgBufferingModule],
+  imports: [HeaderComponent, VgCoreModule, VgControlsModule, VgOverlayPlayModule, VgBufferingModule, MatMenuModule ],
   templateUrl: './video-player.component.html',
   styleUrl: './video-player.component.scss'
 })
@@ -20,6 +23,9 @@ export class VideoPlayerComponent {
   isFullscreen: boolean = false;
   isMuted: boolean = false;
   isMobile: boolean = false;
+
+  @ViewChild('media', { static: false }) videoElement!: ElementRef<HTMLVideoElement>;
+
   
 
   constructor(private speedS: SpeedService, public data: DataService) {}
@@ -96,5 +102,18 @@ export class VideoPlayerComponent {
     const videoUrl = this.speedS.selectVideoUrl(speed, this.data.selVideo); 
     this.data.selVideo.video_file = videoUrl;
     // console.log('So sieht die file aus: ', videoUrl);
+  }
+
+  changeQuality(quality: string) {
+    if (this.data.selVideo && this.data.selVideo.video_file) {
+      const baseVideoFile = this.data.selVideo.video_file.replace(/_\d+p\.mp4$/, '');
+      this.data.selVideo.video_file = `${baseVideoFile}_${quality}.mp4`;
+
+      if (this.videoElement) {
+        const video: HTMLVideoElement = this.videoElement.nativeElement;
+        video.src = this.data.selVideo.video_file; 
+        video.load(); 
+      }
+    }
   }
 }
